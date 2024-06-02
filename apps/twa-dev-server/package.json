@@ -1,0 +1,19 @@
+{
+  "name": "@twa/dev-server",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nodemon",
+    "build": "rm -rf build && esbuild `find . \\( -name '*.ts' \\)` --platform=node --packages=external --outdir=build --bundle",
+    "start": "pnpm build && node build/server.js"
+  },
+  "devDependencies": {
+    "@fastify/http-proxy": "9.5.0",
+    "@fastify/static": "6.8.0",
+    "@twa/utils": "workspace:1.0.0",
+    "esbuild": "0.21.1",
+    "fastify": "4.17.0",
+    "nodemon": "2.0.20",
+    "typescript": "5.4.5"
+  }
+}

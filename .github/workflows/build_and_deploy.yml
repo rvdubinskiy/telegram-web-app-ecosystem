@@ -1,0 +1,58 @@
+name: CI/CD TG Ecosystem
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_bot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Build and push Docker image
+        run: |
+          docker login -u rvdubinskiy -p ${{ secrets.DOCKER_SECRET }}
+          docker build --squash --file ./bot.Dockerfile --tag rvdubinskiy/twa-bot:latest --tag rvdubinskiy/twa-bot:${{ github.sha }} .
+          docker push rvdubinskiy/twa-bot --all-tags
+
+  deploy_bot:
+    needs: build_bot
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.11
+
+      - name: Set up SSH key
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.GH_SSH_DEPLOY_KEY }}
+
+      - name: Add host to known_hosts
+        run: ssh-keyscan ${{ vars.HOST }} > ~/.ssh/known_hosts
+        shell: bash
+
+      - name: Login to GitHub Container Registry
+        run: ssh ${{ vars.USER }}@${{ vars.HOST }} "sudo docker login -u rvdubinskiy -p ${{ secrets.DOCKER_SECRET }}"
+        shell: bash
+
+      - name: Copy compose
+        shell: bash
+        run: scp compose.production.yml ${{ vars.USER }}@${{ vars.HOST }}:~/
+
+      - name: Deploy bot service
+        shell: bash
+        run: ssh ${{ vars.USER }}@${{ vars.HOST }} "cd ~/ && export \$(cat .env.local | xargs) && sudo docker login -u rvdubinskiy -p ${{ secrets.DOCKER_SECRET }} && sudo docker stack deploy --compose-file compose.production.yml --with-registry-auth tap"
+
+      - name: Docker prune
+        shell: bash
+        run: ssh ${{ vars.USER }}@${{ vars.HOST }} "sudo docker system prune -f --all"

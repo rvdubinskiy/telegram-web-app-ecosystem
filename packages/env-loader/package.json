@@ -1,0 +1,9 @@
+{
+  "name": "@twa/env-loader",
+  "private": true,
+  "version": "1.0.0",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "16.0.3"
+  }
+}

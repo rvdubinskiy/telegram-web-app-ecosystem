@@ -1,0 +1,83 @@
+version: '3.7'
+
+services:
+  twa_client:
+    build:
+      context: apps/twa-client
+      dockerfile: ./Dockerfile
+      ssh:
+        - default
+    env_file:
+      - .env.local
+    environment:
+      PORT: 3000
+    ports:
+      - '3000:3000'
+    deploy:
+      restart_policy:
+        condition: any
+        delay: 5s
+        max_attempts: 3
+        window: 10s
+
+  twa_api:
+    build:
+      context: apps/twa-api
+      dockerfile: ./Dockerfile
+      ssh:
+        - default
+    env_file:
+      - .env.local
+    environment:
+      PORT: 3010
+    ports:
+      - '3010:3010'
+    deploy:
+      restart_policy:
+        condition: any
+        delay: 5s
+        max_attempts: 3
+        window: 10s
+
+  twa_bot:
+    build:
+      context: ./
+      dockerfile: ./bot.Dockerfile
+      ssh:
+        - default
+    env_file:
+      - .env.local
+    environment:
+      PORT: 3020
+    ports:
+      - '3020:3020'
+    deploy:
+      replicas: 1
+      update_config:
+        failure_action: pause
+        monitor: 10s
+
+  twa_admin:
+    build:
+      context: apps/twa-admin
+      dockerfile: ./Dockerfile
+      ssh:
+        - default
+    env_file:
+      - .env.local
+    environment:
+      PORT: 3030
+    ports:
+      - '3030:3030'
+    deploy:
+      replicas: 1
+      update_config:
+        failure_action: pause
+        monitor: 10s
+
+  redis:
+    image: redis:7
+    ports:
+      - '6379:6379'
+    deploy:
+      replicas: 1

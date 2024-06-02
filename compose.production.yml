@@ -1,0 +1,67 @@
+version: '3.7'
+
+services:
+  # twa_client:
+  #   # image: ghcr.io/rcm1x/twa_client:${twa_client:-latest}
+  #   env_file:
+  #     - .env.local
+  #   environment:
+  #     PORT: 3000
+  #   ports:
+  #     - '3000:3000'
+  #   deploy:
+  #     restart_policy:
+  #       condition: any
+  #       delay: 5s
+  #       max_attempts: 3
+  #       window: 10s
+
+  # twa_api:
+  #   # image: ghcr.io/rcm1x/twa_api:${twa_api:-latest}
+  #   env_file:
+  #     - .env.local
+  #   environment:
+  #     PORT: 3010
+  #   ports:
+  #     - '3010:3010'
+  #   deploy:
+  #     restart_policy:
+  #       condition: any
+  #       delay: 5s
+  #       max_attempts: 3
+  #       window: 10s
+
+  twa_bot:
+    image: rvdubinskiy/twa-bot:${twa_bot:-latest}
+    env_file:
+      - .env.local
+    environment:
+      PORT: 3020
+    ports:
+      - '3020:3020'
+    deploy:
+      replicas: 1
+      update_config:
+        failure_action: pause
+        monitor: 10s
+
+  # twa_admin:
+  #   # image: ghcr.io/tap/twa_admin:${twa_bot:-latest}
+  #   env_file:
+  #     - .env.local
+  #   environment:
+  #     PORT: 3030
+  #   ports:
+  #     - '3030:3030'
+  #   deploy:
+  #     replicas: 1
+  #     update_config:
+  #       failure_action: pause
+  #       monitor: 10s
+
+  redis:
+    image: redis:7
+    ports:
+      - '6379:6379'
+    deploy:
+      replicas: 1

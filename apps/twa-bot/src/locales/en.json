@@ -1,0 +1,39 @@
+{
+  "translation": {
+    "message_texts": {
+      "choose_language": "Choose a language:",
+      "greeting": "<b>Hello there!</b>\nWelcome to $TITS",
+      "subscribe_resources": "To activate, subscribe to our communities and stay updated with all the $TITS news",
+      "access_allowed": "Access granted. Welcome to the future",
+      "access_denied_cause_channel": "Subscription to the channel not found",
+      "access_denied_cause_chat": "Subscription to the chat not found",
+      "invites": "<b>Your account</b>\n<code>{{coins}} $TITS</code>",
+      "wallet_address": "<b>Your wallet address</b>\n<code>{{walletAddress}}</code>",
+      "wallet_options_title": "<b>Wallet</b>",
+      "settings_greeting": "<b>Settings</b>",
+      "choose_wallet": "Select a wallet to connect:",
+      "wallet_connect_success": "{{walletName}} wallet successfully connected ✅",
+      "invite_greeting": "We have prepared something super interesting for you :) Join the $TITS community"
+    },
+    "buttons": {
+      "russian": "🇷🇺 Русский",
+      "english": "🇬🇧 English",
+      "wallet_settings": "Wallet",
+      "change_lang": "Change language",
+      "play": "Enter the $TITS game",
+      "сhannel_link": "$TITS Channel",
+      "community_link": "$TITS Community",
+      "twitter_link": "Twitter",
+      "check_channels": "Check ✅",
+      "back": "← Back",
+      "settings": "⚙️ Settings",
+      "invite_friends": "Invite friends",
+      "connect_wallet": "Connect wallet",
+      "connect": "Connect {{walletName}}",
+      "disconnect_wallet": "Disconnect wallet",
+      "choose_another_wallet": "Choose another wallet",
+      "ton_wallet": "@wallet Wallet",
+      "outer_wallet_link": "Open via link"
+    }
+  }
+}

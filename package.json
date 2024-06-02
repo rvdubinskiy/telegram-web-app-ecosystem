@@ -1,0 +1,31 @@
+{
+  "name": "tap",
+  "private": true,
+  "scripts": {
+    "clean": "rm -rf \"node_modules\" \"**/node_modules\"  \"**/.next\"  \"**/dist\" \"**/pnpm-error.log\" \"**/.DS_Store\"",
+    "fresh": "pnpm clean && pnpm i",
+    "build": "pnpm --stream -r run build",
+    "dev": "pnpm --stream -r run dev",
+    "dev:bot": "pnpm --filter @twa/bot dev",
+    "dev:client": "pnpm --filter @twa/client dev"
+  },
+  "devDependencies": {
+    "@next/bundle-analyzer": "^13.0.2",
+    "@types/node": "18.11.3",
+    "@types/react": "18.0.21",
+    "@types/react-dom": "18.0.6",
+    "autoprefixer": "^10.4.12",
+    "eslint": "8.26.0",
+    "eslint-config-next": "13.0.2",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-universe": "^11.2.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.8.7"
+  },
+  "lint-staged": {
+    "**/*.(ts|tsx)": "bash -c 'pnpm tsc --noEmit'",
+    "**/*.(ts|tsx|js)": "eslint --fix"
+  }
+}

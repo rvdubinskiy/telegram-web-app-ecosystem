@@ -1,0 +1,37 @@
+{
+  "name": "@twa/bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon",
+    "build": "rm -rf build && esbuild `find src \\( -name '*.ts' \\)` --platform=node --loader:.png=base64 --outdir=build --bundle",
+    "start": "pnpm build && node build/index.js"
+  },
+  "dependencies": {
+    "@twa/env-loader": "workspace:1.0.0",
+    "@tonconnect/sdk": "^3.0.2",
+    "@typegoose/typegoose": "11.4.0",
+    "axios": "1.5.1",
+    "dayjs": "1.11.9",
+    "dotenv": "16.3.1",
+    "i18next": "^23.11.4",
+    "i18next-fs-backend": "^2.3.1",
+    "mongodb": "5.7.0",
+    "mongoose": "7.4.0",
+    "node-telegram-bot-api": "0.63.0",
+    "nodemon": "3.0.1",
+    "qrcode": "^1.5.3",
+    "redis": "^4.6.14",
+    "typegoose": "5.9.1",
+    "util": "0.12.5"
+  },
+  "devDependencies": {
+    "@types/node": "20.4.1",
+    "@types/node-telegram-bot-api": "0.61.6",
+    "esbuild": "0.21.1",
+    "postcss": "8.4.18",
+    "typescript": "5.1.6"
+  },
+  "author": ""
+}

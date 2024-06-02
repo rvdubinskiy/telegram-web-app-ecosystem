@@ -1,0 +1,11 @@
+
+node_modules/
+
+dist/
+build/
+vpn/
+.env.local
+
+
+
+.DS_Store

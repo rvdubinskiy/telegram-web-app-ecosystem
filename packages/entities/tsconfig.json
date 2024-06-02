@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "allowJs": false,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "esnext",
+    "lib": ["esnext", "dom"],
+    "strict": true,
+    "skipLibCheck": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noEmitOnError": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "preserveWatchOutput": true,
+    "experimentalDecorators": true,
+    "pretty": true,
+    "downlevelIteration": true
+  },
+  "exclude": ["node_modules", "**/*.types.ts", "**/*.spec.ts"],
+  "include": ["src/**/*.ts"]
+}

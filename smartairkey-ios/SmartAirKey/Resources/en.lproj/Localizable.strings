@@ -1,0 +1,69 @@
+/* SmartAirKey — English. No technical terms (BLE, SDK, RSSI, controller, key) are exposed. */
+
+// Common
+"app.name" = "SmartAirKey";
+"common.retry" = "Try Again";
+"common.cancel" = "Cancel";
+"common.ok" = "Got It";
+"common.open_settings" = "Open Settings";
+"common.contact_support" = "Contact Support";
+"common.done" = "Done";
+
+// Auth
+"auth.title" = "Sign In";
+"auth.subtitle" = "Sign in to reach your doors.";
+"auth.email" = "Email";
+"auth.password" = "Password";
+"auth.sign_in" = "Sign In";
+"auth.signing_in" = "Signing in…";
+"auth.error.invalid" = "Couldn't sign in. Check your email and password.";
+"auth.sign_out" = "Sign Out";
+"auth.sign_out.confirm.title" = "Sign out?";
+"auth.sign_out.confirm.message" = "Your doors and access will be removed from this device.";
+
+// Home — seamless access
+"home.title" = "Access";
+"seamless.title" = "Seamless Access";
+"seamless.subtitle.on" = "Doors open on their own as you walk up.";
+"seamless.subtitle.off" = "Open doors manually with the Open button.";
+"seamless.state.on" = "On";
+"seamless.state.off" = "Off";
+"seamless.state.turning_on" = "Turning on…";
+"seamless.state.turning_off" = "Turning off…";
+"seamless.accessibility.hint" = "Double tap to turn automatic door opening near you on or off.";
+
+// Doors
+"doors.section" = "My Doors";
+"doors.empty.title" = "No doors yet";
+"doors.empty.message" = "Doors appear here once you're granted access.";
+"door.open" = "Open";
+"door.opening" = "Opening…";
+"door.opened" = "Opened";
+
+// Door statuses (user-facing, plain language)
+"door.status.ready" = "Ready to open";
+"door.status.connecting" = "Connecting…";
+"door.status.opening" = "Opening…";
+"door.status.opened" = "Door open";
+"door.status.unavailable" = "Out of range — move closer";
+"door.status.no_access" = "No access";
+"door.status.expired" = "Access expired";
+
+// Success
+"open.success" = "Door open";
+
+// Errors (each has one primary action)
+"error.bluetooth_off.title" = "Turn on Bluetooth";
+"error.bluetooth_off.message" = "Turn on Bluetooth to open doors near you.";
+"error.bluetooth_denied.title" = "Bluetooth access needed";
+"error.bluetooth_denied.message" = "Allow the app to use Bluetooth in Settings to open doors.";
+"error.bluetooth_unsupported.title" = "Bluetooth unavailable";
+"error.bluetooth_unsupported.message" = "This device can't open doors near you.";
+"error.open_failed.title" = "Couldn't open";
+"error.open_failed.message" = "The door didn't respond. Move closer and try again.";
+"error.no_access.title" = "No access to this door";
+"error.no_access.message" = "Your access to this door isn't valid. Contact support.";
+"error.keys_failed.title" = "Couldn't refresh access";
+"error.keys_failed.message" = "Check your internet connection and try again.";
+"error.generic.title" = "Something went wrong";
+"error.generic.message" = "Please try again. If it keeps happening, contact support.";

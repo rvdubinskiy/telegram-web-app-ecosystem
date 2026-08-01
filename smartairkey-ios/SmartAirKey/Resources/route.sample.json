@@ -1,0 +1,226 @@
+{
+  "keys": [
+    {
+      "share": [
+        "permanent",
+        "onlineOpenApplication",
+        "temporary"
+      ],
+      "maintenance": {
+        "tariff": {
+          "includedKeys": 5,
+          "subscription": {
+            "dateOfPayment": "firstDayOfMonth",
+            "type": "monthly",
+            "price": {
+              "value": 0,
+              "currency": "RUB"
+            },
+            "maxPaymentPeriodCount": 11,
+            "additionalKeyPrice": {
+              "currency": "RUB",
+              "value": 0
+            }
+          }
+        },
+        "companyContact": {
+          "displayName": "Test Main",
+          "phoneNumbers": [
+            "+79161500159"
+          ],
+          "address": {
+            "streetAddress": "ул. Адмирала Руднева, 4"
+          }
+        },
+        "tariffPacket": {
+          "trialType": "disabled",
+          "includedKeys": 5,
+          "type": "access",
+          "subscriptions": [
+            {
+              "maxPaymentPeriodCount": 11,
+              "dateOfPayment": "firstDayOfMonth",
+              "type": "monthly",
+              "price": {
+                "value": 0,
+                "currency": "RUB"
+              },
+              "additionalKeyPrice": {
+                "value": 0,
+                "currency": "RUB"
+              }
+            },
+            {
+              "type": "yearly",
+              "additionalKeyPrice": {
+                "currency": "RUB",
+                "value": 0
+              },
+              "price": {
+                "currency": "RUB",
+                "value": 0
+              },
+              "dateOfPayment": "whenPeriodExpires",
+              "maxPaymentPeriodCount": 0
+            }
+          ]
+        },
+        "supportContact": {
+          "displayName": "Support",
+          "email": "smartairkeytest@gmail.com",
+          "phoneNumber": "+79161500159"
+        },
+        "period": {
+          "till": "02.09.2024, 02:59:59 Moscow Standard Time",
+          "from": "01.08.2024, 03:00:00 Moscow Standard Time"
+        },
+        "trial": false,
+        "givenKeys": 1
+      },
+      "keyIds": [
+        "039ba6d4-5e27-49ad-a6c7-b1bf0003398a"
+      ],
+      "type": "family",
+      "claims": [],
+      "modified": "01.08.2024, 03:11:44 Moscow Standard Time",
+      "created": "02.07.2024, 10:52:07 Moscow Standard Time",
+      "period": {
+        "till": "16.09.2099, 02:59:59 Moscow Standard Time",
+        "from": "01.08.2024, 03:00:00 Moscow Standard Time"
+      },
+      "id": "45a5bde2-fd52-4122-b80d-b1a10081acc7",
+      "payload": [
+        {
+          "type": "administrator",
+          "value": "{\"isAdmin\":true}"
+        },
+        {
+          "value": "{\"addressId\":\"898f03ed-d613-49e1-af33-34e73248f451\",\"address\":\"ул. Адмирала Руднева, 4\"}",
+          "type": "address"
+        },
+        {
+          "type": "picture",
+          "value": "{\"pictureId\":\"d8751f66-e5e5-007f-0159-00de05050505\"}"
+        }
+      ],
+      "title": "MadLord Test Perimeter",
+      "serviceCompanyId": "bb78be10-bd7b-481d-8bea-ac6e01119c15"
+    }
+  ],
+  "cryptoKeys": [
+    {
+      "signatureKey": {
+        "salt": "V1pSTlZha3FackRW",
+        "token": "Q/HThfxaxNwcnQdJdj6c1Jj3Q08qMkCy0t65BXJkd+s=",
+        "algorithm": "hmacSha256"
+      },
+      "period": {
+        "from": "01.08.2024, 03:00:00 Moscow Standard Time",
+        "till": "16.09.2099, 02:59:59 Moscow Standard Time"
+      },
+      "modified": "01.08.2024, 03:11:44 Moscow Standard Time",
+      "accessToken": "CgIIAxIrGikKDFdaUk5WYWtxWnJEVhDZltrl+v////8BGAEggISZkAEo/82LkgE4ARogoX51wGNYIqVgdxXKXkW6ajlEPkbx63HJHht21bPYMdw=",
+      "title": "MadLord's lock",
+      "usage": {
+        "restrictions": [
+          {
+            "key": "AutoOpenEnabled",
+            "type": "boolean",
+            "value": "True"
+          },
+          {
+            "value": "True",
+            "type": "boolean",
+            "key": "KeepOpenedEnabled"
+          },
+          {
+            "type": "timeSpan",
+            "value": "60000",
+            "key": "MaxOpenedTime"
+          },
+          {
+            "key": "MinOpenedTime",
+            "value": "3000",
+            "type": "timeSpan"
+          },
+          {
+            "type": "int",
+            "key": "MaxActiveDistance",
+            "value": "100"
+          },
+          {
+            "key": "MinActiveDistance",
+            "value": "0",
+            "type": "int"
+          },
+          {
+            "type": "int",
+            "value": "-5",
+            "key": "MinGroundFloor"
+          },
+          {
+            "type": "int",
+            "value": "0",
+            "key": "MaxGroundFloor"
+          }
+        ]
+      },
+      "lock": {
+        "id": "YLKDJVN5FTQCBCS",
+        "metadata": {
+          "version": "3.0.1",
+          "type": "lift"
+        },
+        "transports": [
+          {
+            "macAddress": "58:63:56:D2:25:CE",
+            "charDataUuid": "e7add780-b042-4876-aae1-112855353cc1",
+            "deviceName": "VS2NZCHOAU52LPI",
+            "serviceUuid": "0bd51666-e7cb-469b-8e4d-2742f1ba77cc",
+            "type": "blueToothLe",
+            "charRssiUuid": "9de0d5aa-d747-4bb1-aa64-c2c5f8ffdfdc"
+          },
+          {
+            "type": "nfc"
+          },
+          {
+            "url": "https://online.smartairkey.com:4445/",
+            "radius": 100000,
+            "geoRestriction": false,
+            "client_secret": null,
+            "type": "internet",
+            "coordinate": {
+              "y": 0,
+              "x": 0
+            },
+            "client_token": null
+          }
+        ]
+      },
+      "accessTokenV3": "NaW0Gy5AsNP3HEUlU92UjQ==",
+      "settings": {
+        "tooCloseToLockDistance": 35,
+        "groundFloor": 0,
+        "requirePincode": false,
+        "useMethod1": true,
+        "autoClose": false,
+        "useMethod2": true,
+        "keepDoorOpened": 3000,
+        "activeDistance": 58,
+        "notifyWhenClosed": false,
+        "openWhileTooCloseToLock": false,
+        "autoOpen": false,
+        "keepOpenedWhileStayingNear": true,
+        "notifyWhenOpened": false
+      },
+      "signatureKeyV3": {
+        "token": "uJ+p9thzjum3PVynlpnF8I8ROVlp0DaSgUjbJDZiBLU=",
+        "algorithm": "hmacSha256",
+        "salt": ""
+      },
+      "created": "01.08.2024, 03:11:44 Moscow Standard Time",
+      "id": "039ba6d4-5e27-49ad-a6c7-b1bf0003398a",
+      "compositeKeyId": "45a5bde2-fd52-4122-b80d-b1a10081acc7"
+    }
+  ]
+}

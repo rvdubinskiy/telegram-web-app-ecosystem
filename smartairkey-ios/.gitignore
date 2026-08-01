@@ -1,0 +1,27 @@
+# Xcode / build
+build/
+DerivedData/
+*.xcodeproj
+*.xcworkspace
+!default.xcworkspace
+xcuserdata/
+*.xcuserstate
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# CocoaPods (installed locally; not vendored)
+Pods/
+Podfile.lock
+
+# SwiftPM
+.swiftpm/
+.build/
+
+# Vendored SmartAirKey binary SDK — large binaries, copied via scripts/setup.sh
+Vendor/
+
+# macOS
+.DS_Store

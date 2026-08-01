@@ -38,5 +38,6 @@ Every MVP and UI requirement, mapped to where it's implemented.
 - **Live backend**: the auth route and key endpoint are deployment-specific
   (`SmartAirKeyAuthService.path`, `SmartAirKeyBackendClient.path`). Demo mode
   (bundled keys) is the default so the app is runnable out of the box.
-- The SmartAirKey binary SDK is required to build for a device and is not
-  committed to git (see `scripts/setup.sh`).
+- The SmartAirKey binary SDK is bundled in `Vendor/SDK/` (device + simulator
+  slices), so the project builds out of the box after `xcodegen generate` +
+  `pod install`.

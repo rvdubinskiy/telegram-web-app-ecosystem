@@ -5,8 +5,8 @@
 #   pod install            # links the SmartAirKey SDK's transitive pod dependencies
 #   open SmartAirKey.xcworkspace
 #
-# The SmartAirKey binary xcframeworks are NOT committed to git (see .gitignore).
-# Run `scripts/setup.sh <path-to-iOS_TestApp>` once to copy them into Vendor/SDK/.
+# The SmartAirKey binary xcframeworks are committed under Vendor/SDK/, so the
+# project builds without any extra download.
 
 name: SmartAirKey
 options:
@@ -38,7 +38,7 @@ targets:
         INFOPLIST_FILE: SmartAirKey/Resources/Info.plist
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
-        # Vendored SmartAirKey SDK (copied by scripts/setup.sh)
+        # Vendored SmartAirKey SDK (committed under Vendor/SDK)
         FRAMEWORK_SEARCH_PATHS:
           - $(inherited)
           - $(PROJECT_DIR)/Vendor/SDK

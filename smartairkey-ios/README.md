@@ -48,31 +48,32 @@ Details: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
 
 ## Requirements
 
-- Xcode 15+ / iOS 16+ target
+- macOS with Xcode 15+ / iOS 16+ target
 - [XcodeGen](https://github.com/yonaskolb/XcodeGen) (`brew install xcodegen`)
 - [CocoaPods](https://cocoapods.org) (`sudo gem install cocoapods`)
-- The SmartAirKey binary SDK (the `sdk/` folder shipped in the official
-  `iOS_TestApp` bundle). These xcframeworks are **not** committed to git.
+
+The SmartAirKey binary SDK **is included** in this repo under
+[`Vendor/SDK/`](Vendor/SDK) (device + simulator slices), so the project builds
+without any extra downloads:
+
+- `AirKeySmartDeviceCore.xcframework` (the SDK)
+- `AIKAirKite.xcframework`, `BWBluetoothWolf.xcframework`,
+  `DIDeviceInteractionLion.xcframework`, `TCTransportCamel.xcframework`
 
 ## Setup
 
 ```bash
 cd smartairkey-ios
 
-# 1. Copy the SmartAirKey SDK xcframeworks and generate the project + pods.
-#    Point it at the TestApp folder that contains the `sdk/` directory.
-scripts/setup.sh /path/to/TestAppX/TestAppX
+# Generate the Xcode project and install the SDK's public pod dependencies.
+xcodegen generate
+pod install
 
-# 2. Open the workspace.
 open SmartAirKey.xcworkspace
 ```
 
-`scripts/setup.sh` copies these xcframeworks into `Vendor/SDK/` and runs
-`xcodegen generate` + `pod install`:
-
-- `AirKeySmartDeviceCore.xcframework` (the SDK)
-- `AIKAirKite.xcframework`, `BWBluetoothWolf.xcframework`,
-  `DIDeviceInteractionLion.xcframework`, `TCTransportCamel.xcframework`
+(`scripts/setup.sh /path/to/TestAppX/TestAppX` does the same and can also
+re-copy the SDK from a fresh `iOS_TestApp` bundle if you ever need to update it.)
 
 CocoaPods pulls the SDK's public transitive dependencies
 (`CocoaLumberjack`, `Protobuf`, `SSZipArchive`, `RWMRecurrenceRule`,

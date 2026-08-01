@@ -20,8 +20,10 @@ Podfile.lock
 .swiftpm/
 .build/
 
-# Vendored SmartAirKey binary SDK — large binaries, copied via scripts/setup.sh
-Vendor/
+# The SmartAirKey binary SDK (Vendor/SDK) IS committed so the project builds
+# out of the box. Ignore anything else that lands under Vendor/.
+Vendor/*
+!Vendor/SDK/
 
 # macOS
 .DS_Store

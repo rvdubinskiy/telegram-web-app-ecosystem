@@ -1,0 +1,64 @@
+name: SmartAirKey iOS
+
+# Builds and unit-tests the SmartAirKey iOS app on a macOS runner.
+# Scoped to the app folder so it never runs on unrelated web/monorepo changes.
+
+on:
+  push:
+    paths:
+      - 'smartairkey-ios/**'
+      - '.github/workflows/ios-smartairkey.yml'
+  pull_request:
+    paths:
+      - 'smartairkey-ios/**'
+      - '.github/workflows/ios-smartairkey.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: ios-smartairkey-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-test:
+    name: Build & Test
+    runs-on: macos-14
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: smartairkey-ios
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Install XcodeGen & xcbeautify
+        run: brew install xcodegen xcbeautify
+
+      - name: Generate Xcode project
+        run: xcodegen generate
+
+      - name: Cache CocoaPods
+        uses: actions/cache@v4
+        with:
+          path: smartairkey-ios/Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('smartairkey-ios/Podfile') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
+
+      - name: Install pods
+        run: pod install
+
+      - name: Build & test
+        run: |
+          set -o pipefail
+          xcodebuild test \
+            -workspace SmartAirKey.xcworkspace \
+            -scheme SmartAirKey \
+            -destination 'platform=iOS Simulator,name=iPhone 15' \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO \
+            | xcbeautify

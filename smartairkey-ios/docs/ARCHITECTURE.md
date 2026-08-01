@@ -7,8 +7,9 @@
    protocol: `SeamlessAccessService`.
 2. **Be runnable without hardware.** Simulator, previews and tests use a mock,
    so the whole experience is exercisable without a phone or a real controller.
-3. **Testable core.** The tricky rules (status mapping, key expiry, error
-   contracts) are pure and SDK-free, so they're unit-tested directly.
+3. **Testable core.** The tricky rules (status mapping, error contracts, the
+   open/clear flows) are pure and SDK-free, so they're unit-tested directly.
+   (Key expiry is delegated to the SDK's own `CryptoKey.status`.)
 
 ## Layers
 

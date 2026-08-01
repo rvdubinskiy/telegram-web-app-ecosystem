@@ -56,11 +56,11 @@ final class AirKeyAccessService: NSObject, SeamlessAccessService {
     func loadKeys(serverJSON: Data) throws -> KeyLoadSummary {
         let route = try ServerDecoding.makeDecoder().decode(Route.self, from: serverJSON)
 
-        // Requirement 10: use only keys that are active and not yet expired.
-        let now = Date()
-        let activeKeys = route.cryptoKeys.filter { key in
-            key.status == .active && KeyValidity.isValid(till: key.period.till, now: now)
-        }
+        // Requirement 10: use only keys that are still valid. The SDK's
+        // `CryptoKey.status` is computed from the key's validity period, so an
+        // expired key reports `.expired` and is dropped here. (Revoked keys are
+        // simply absent from the new bundle and removed by `removeAllKeys()`.)
+        let activeKeys = route.cryptoKeys.filter { $0.status == .active }
         let dropped = route.cryptoKeys.count - activeKeys.count
 
         rebuildIndex(with: activeKeys)

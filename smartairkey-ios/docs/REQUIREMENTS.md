@@ -15,7 +15,7 @@ Every MVP and UI requirement, mapped to where it's implemented.
 | 7 | Works minimised / screen locked, within iOS limits | `Info.plist` `UIBackgroundModes`; `AppDelegate` calls `AirKeySmartDevice.shared.launch`; Keychain `AfterFirstUnlock` |
 | 8 | User sees the list of available doors and their status | `Views/HomeView.doorsSection`, `DoorRowView`, `DoorStatusBadge` |
 | 9 | User can manually open an available door | `DoorRowView` "Open" button → `HomeViewModel.open(_:)` → `AirKeyAccessService.open(doorID:)` → `openLock(for:key:)` |
-| 10 | Expired/revoked keys stop being used automatically | `Access/KeyValidity.swift` + `CryptoKey.status == .active` filter in `loadKeys`; `removeAllKeys()` before re-adding drops revoked keys |
+| 10 | Expired/revoked keys stop being used automatically | `CryptoKey.status == .active` filter in `loadKeys` (the SDK computes status from the key's validity period); `removeAllKeys()` before re-adding drops revoked keys |
 | 11 | Sign-out removes keys and tokens from the device | `AppEnvironment.signOutCleanup()` → `access.clear()` (`removeAllKeys`), `SeamlessPreferenceStore.reset()`, `SessionStore.clear()` (`KeychainStore.removeAll`) |
 | 12 | Records feature enable, successful opens, and errors | `Support/AnalyticsLogging.swift`; logged in `HomeViewModel` and `AirKeyAccessService` |
 

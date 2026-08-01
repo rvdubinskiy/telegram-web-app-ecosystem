@@ -69,5 +69,19 @@ jobs:
             -workspace SmartAirKey.xcworkspace \
             -scheme SmartAirKey \
             -destination "id=${{ steps.sim.outputs.udid }}" \
+            -resultBundlePath TestResults.xcresult \
             CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO \
-            | xcbeautify
+            2>&1 | tee xcodebuild-test.log | xcbeautify
+
+      - name: Diagnostics on failure
+        if: failure()
+        run: |
+          echo "===== raw xcodebuild tail ====="
+          tail -150 xcodebuild-test.log || true
+          echo "===== recent crash reports ====="
+          DIR="$HOME/Library/Logs/DiagnosticReports"
+          ls -1t "$DIR" 2>/dev/null | head -20 || true
+          for f in $(ls -1t "$DIR"/*.ips 2>/dev/null | head -5); do
+            echo "--- $f ---"
+            head -80 "$f" || true
+          done

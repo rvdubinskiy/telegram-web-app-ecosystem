@@ -53,12 +53,21 @@ jobs:
       - name: Install pods
         run: pod install
 
+      - name: Pick an iOS simulator
+        id: sim
+        run: |
+          # Choose any available iPhone simulator for the installed Xcode,
+          # so we don't depend on a specific model/OS combination.
+          UDID=$(xcrun simctl list devices available --json | python3 -c "import json,sys; d=json.load(sys.stdin)['devices']; print(next(x['udid'] for r in sorted(d) for x in d[r] if 'iPhone' in x['name']))")
+          echo "Using simulator $UDID"
+          echo "udid=$UDID" >> "$GITHUB_OUTPUT"
+
       - name: Build & test
         run: |
           set -o pipefail
           xcodebuild test \
             -workspace SmartAirKey.xcworkspace \
             -scheme SmartAirKey \
-            -destination 'platform=iOS Simulator,name=iPhone 15' \
+            -destination "id=${{ steps.sim.outputs.udid }}" \
             CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO \
             | xcbeautify

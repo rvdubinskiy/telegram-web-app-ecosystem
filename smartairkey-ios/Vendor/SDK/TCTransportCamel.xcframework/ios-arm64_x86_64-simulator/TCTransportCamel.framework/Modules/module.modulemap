@@ -1,0 +1,5 @@
+framework module TCTransportCamel {
+	umbrella header "TCTransportCamel.h"
+	export * // export each module
+	module * { export * } // for each module export each submodule
+}

@@ -1,0 +1,5 @@
+framework module BWBluetoothWolf {
+	umbrella header "BWBluetoothWolf.h"
+	export * // export each module
+	module * { export * } // for each module export each submodule
+}

@@ -1,0 +1,1712 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-module-flags: -target x86_64-apple-ios15.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name AirKeySmartDeviceCore
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -interface-compiler-version 6.1.2
+import AIKAirKite
+@_exported import AirKeySmartDeviceCore
+import BWBluetoothWolf
+import CommonCrypto
+import CoreBluetooth
+import CoreLocation
+import DIDeviceInteractionLion
+import Foundation
+import RWMRecurrenceRule
+import Swift
+import UIKit
+import UserNotifications
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public protocol LoggingAgent {
+  func getLogFile() -> AirKeySmartDeviceCore.LogFile?
+  func removeLogFile()
+}
+public struct Period : Swift.Codable, Swift.Hashable {
+  public static func == (a: AirKeySmartDeviceCore.Period, b: AirKeySmartDeviceCore.Period) -> Swift.Bool
+  public func encode(to encoder: any Swift.Encoder) throws
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public enum ConnectionType {
+  case peripheral
+  case central
+  case all
+  public static func == (a: AirKeySmartDeviceCore.ConnectionType, b: AirKeySmartDeviceCore.ConnectionType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class AirKeySmartDevice : AirKeySmartDeviceCore.AirKeySmartDeviceCoreProtocol {
+  public static let shared: AirKeySmartDeviceCore.AirKeySmartDevice
+  public func add(compositeKeys: [AirKeySmartDeviceCore.CompositeKey], crypto: [AirKeySmartDeviceCore.CryptoKey], sent: [AirKeySmartDeviceCore.CompositeKey.Sent])
+  public func removeAllKeys()
+  public func removeKey(by compositeKeyId: Swift.String)
+  public func openLock(for name: Swift.String, key: AirKeySmartDeviceCore.CryptoKey)
+  public func closeLock(with name: Swift.String, key: AirKeySmartDeviceCore.CryptoKey)
+  public func updateLock(keyId: Swift.String, settings: AirKeySmartDeviceCore.CryptoKey.Settings)
+  public func getLockConfiguration(for deviceName: Swift.String)
+  public func update(configuration: AirKeySmartDeviceCore.Configuration, for deviceName: Swift.String)
+  public func set(delegate: any AirKeySmartDeviceCore.AirKeyDeviceDelegate)
+  public func setupBluetooth()
+  public func afterloadingKeysBluetoothConnectionRefreshing()
+  public func updateBluetoothLocksStatuses()
+  public func launch(options: [UIKit.UIApplication.LaunchOptionsKey : Any]?)
+  public func stopConnections()
+  public func getLogFileArchiveUrl() -> Foundation.URL?
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers public class AirKeySmartDeviceObj : ObjectiveC.NSObject, AirKeySmartDeviceCore.AirKeyDeviceDelegate {
+  @objc public static let shared: AirKeySmartDeviceCore.AirKeySmartDeviceObj
+  @objc public func compositeKeys(data: Foundation.Data) -> [AirKeySmartDeviceCore.CompositeKeyObjC]
+  @objc public func cryptoKeys(data: Foundation.Data) -> [AirKeySmartDeviceCore.CryptoKeyObjC]
+  @objc public func add(compositeKeys: [AirKeySmartDeviceCore.CompositeKeyObjC], crypto: [AirKeySmartDeviceCore.CryptoKeyObjC], sent: [AirKeySmartDeviceCore.SentObjC])
+  @objc public func removeAllKeys()
+  @objc public func removeKey(by compositeKeyId: Swift.String)
+  @objc public func openLock(for name: Swift.String)
+  @objc public func closeLock(with name: Swift.String)
+  @objc public func updateLock(keyId: Swift.String, settings: AirKeySmartDeviceCore.SettingsObjC)
+  @objc public func getLockConfiguration(for deviceName: Swift.String)
+  @objc public func update(configuration: AirKeySmartDeviceCore.ConfigurationObjC, for deviceName: Swift.String)
+  @objc public func set(delegate: any AirKeySmartDeviceCore.AirKeyDeviceDelegateObjC)
+  public func lockStatusDidChanged(device name: Swift.String, status: AirKeySmartDeviceCore.LockStatus)
+  public func didChange(configuration: AirKeySmartDeviceCore.Configuration, for deviceName: Swift.String)
+  public func device(configuration: AirKeySmartDeviceCore.Configuration)
+  @objc public func setupBluetooth()
+  @objc public func afterloadingKeysBluetoothConnectionRefreshing()
+  @objc public func updateBluetoothLocksStatuses()
+  @objc public func launch(options: [UIKit.UIApplication.LaunchOptionsKey : Any]?)
+  @objc public func getLogFileArchiveUrl() -> Foundation.URL?
+  @objc deinit
+}
+@objcMembers @objc public class RouteObjC : ObjectiveC.NSObject {
+  @objc final public let keys: [AirKeySmartDeviceCore.CompositeKeyObjC]
+  @objc final public let cryptoKeys: [AirKeySmartDeviceCore.CryptoKeyObjC]
+  @objc public init(keys: [AirKeySmartDeviceCore.CompositeKeyObjC], cryptoKeys: [AirKeySmartDeviceCore.CryptoKeyObjC])
+  @objc public init(data: Foundation.Data)
+  @objc deinit
+}
+@objcMembers @objc public class CryptoKeyObjC : ObjectiveC.NSObject, Swift.Codable, Swift.Identifiable {
+  public init(cryptoKey: AirKeySmartDeviceCore.CryptoKey)
+  @objc final public let id: Swift.String
+  @objc final public let title: Swift.String
+  @objc final public let created: Foundation.Date
+  @objc final public let modified: Foundation.Date
+  @objc final public let accessToken: Swift.String
+  @objc final public let accessTokenV3: Swift.String?
+  @objc final public let compositeKeyId: Swift.String
+  @objc final public let settings: AirKeySmartDeviceCore.SettingsObjC
+  @objc final public let signatureKey: AirKeySmartDeviceCore.SignatureKeyObjC
+  @objc final public let signatureKeyV3: AirKeySmartDeviceCore.SignatureKeyObjC?
+  @objc final public let usage: AirKeySmartDeviceCore.UsageObjC
+  @objc final public let serialNumber: Swift.String?
+  @objc final public let period: AirKeySmartDeviceCore.PeriodObjC
+  @objc final public let bluetoothDeviceName: Swift.String?
+  required convenience public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  public typealias ID = Swift.String
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objcMembers @objc public class CompositeKeyObjC : ObjectiveC.NSObject {
+  final public let compositeKey: AirKeySmartDeviceCore.CompositeKey
+  @objc final public let id: Swift.String
+  @objc final public let title: Swift.String
+  @objc final public let created: Foundation.Date
+  @objc final public let modified: Foundation.Date
+  @objc final public let keyIds: [Swift.String]
+  @objc final public let claims: [Swift.String]
+  @objc final public let maintenance: AirKeySmartDeviceCore.MaintenanceObjC?
+  @objc final public let payload: AirKeySmartDeviceCore.PayloadStorageObjC
+  @objc final public let period: AirKeySmartDeviceCore.PeriodObjC
+  @objc final public let serviceCompanyId: Swift.String
+  @objc final public let share: [Swift.String]
+  @objc final public let type: AirKeySmartDeviceCore.KeyTypeObjC
+  @objc deinit
+}
+@objcMembers @objc public class MaintenanceObjC : ObjectiveC.NSObject, Swift.Codable {
+  @objc final public let id: Swift.String?
+  @objc final public let trial: Foundation.NSNumber?
+  @objc final public let tariff: AirKeySmartDeviceCore.TariffObjC?
+  @objc final public let givenKeys: Foundation.NSNumber?
+  @objc final public let tariffPacket: AirKeySmartDeviceCore.MaintenanceObjC.TariffPacketObjC?
+  @objc final public let companyContact: AirKeySmartDeviceCore.MaintenanceObjC.CompanyContactObjC
+  @objc final public let supportContact: AirKeySmartDeviceCore.MaintenanceObjC.SupportContactObjC
+  @objc final public let period: AirKeySmartDeviceCore.PeriodObjC?
+  @objc public init(id: Swift.String?, trial: Foundation.NSNumber?, tariff: AirKeySmartDeviceCore.TariffObjC?, givenKeys: Foundation.NSNumber?, tariffPacket: AirKeySmartDeviceCore.MaintenanceObjC.TariffPacketObjC?, companyContact: AirKeySmartDeviceCore.MaintenanceObjC.CompanyContactObjC, supportContact: AirKeySmartDeviceCore.MaintenanceObjC.SupportContactObjC, period: AirKeySmartDeviceCore.PeriodObjC?)
+  convenience public init(maintenance: AirKeySmartDeviceCore.CompositeKey.Maintenance)
+  required convenience public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  @objcMembers @objc public class CompanyContactObjC : ObjectiveC.NSObject, Swift.Codable {
+    @objc final public let address: AirKeySmartDeviceCore.MaintenanceObjC.AddressObjC
+    @objc final public let displayName: Swift.String
+    @objc final public let phoneNumbers: [Swift.String]
+    @objc public init(address: AirKeySmartDeviceCore.MaintenanceObjC.AddressObjC, displayName: Swift.String, phoneNumbers: [Swift.String])
+    convenience public init(companyContact: AirKeySmartDeviceCore.CompositeKey.Maintenance.CompanyContact)
+    @objc deinit
+    public func encode(to encoder: any Swift.Encoder) throws
+    required public init(from decoder: any Swift.Decoder) throws
+  }
+  @objcMembers @objc public class TariffPacketObjC : ObjectiveC.NSObject, Swift.Codable {
+    @objc final public let includedKeys: Foundation.NSNumber
+    @objc final public let trialType: Swift.String
+    @objc final public let type: Swift.String
+    @objc final public let subscriptions: [AirKeySmartDeviceCore.MaintenanceObjC.TariffSubscriptionObjC]
+    @objc public init(includedKeys: Foundation.NSNumber, trialType: Swift.String, type: Swift.String, subscriptions: [AirKeySmartDeviceCore.MaintenanceObjC.TariffSubscriptionObjC])
+    convenience public init(packet: AirKeySmartDeviceCore.Tariff.Packet)
+    required convenience public init(from decoder: any Swift.Decoder) throws
+    public func encode(to encoder: any Swift.Encoder) throws
+    @objc deinit
+  }
+  @objcMembers @objc public class TariffSubscriptionObjC : ObjectiveC.NSObject, Swift.Codable {
+    @objc final public let type: Swift.String
+    @objc final public let dateOfPayment: Swift.String
+    @objc final public let price: AirKeySmartDeviceCore.MaintenanceObjC.TariffPriceObjC
+    @objc final public let additionalKeyPrice: AirKeySmartDeviceCore.MaintenanceObjC.TariffPriceObjC
+    @objc final public let maxPaymentPeriodCount: Foundation.NSNumber
+    @objc public init(type: Swift.String, dateOfPayment: Swift.String, price: AirKeySmartDeviceCore.MaintenanceObjC.TariffPriceObjC, additionalKeyPrice: AirKeySmartDeviceCore.MaintenanceObjC.TariffPriceObjC, maxPaymentPeriodCount: Foundation.NSNumber)
+    convenience public init(subscription: AirKeySmartDeviceCore.Tariff.Subscription)
+    required convenience public init(from decoder: any Swift.Decoder) throws
+    public func encode(to encoder: any Swift.Encoder) throws
+    @objc deinit
+  }
+  @objcMembers @objc public class TariffPriceObjC : ObjectiveC.NSObject, Swift.Codable {
+    @objc final public let value: Foundation.NSNumber
+    @objc final public let currency: Swift.String
+    @objc public init(value: Foundation.NSNumber, currency: Swift.String)
+    convenience public init(price: AirKeySmartDeviceCore.Tariff.Subscription.Price)
+    required convenience public init(from decoder: any Swift.Decoder) throws
+    public func encode(to encoder: any Swift.Encoder) throws
+    @objc deinit
+  }
+  @objcMembers @objc public class AddressObjC : ObjectiveC.NSObject, Swift.Codable {
+    @objc final public let streetAddress: Swift.String
+    @objc public init(streetAddress: Swift.String)
+    @objc deinit
+    public func encode(to encoder: any Swift.Encoder) throws
+    required public init(from decoder: any Swift.Decoder) throws
+  }
+  @objcMembers @objc public class SupportContactObjC : ObjectiveC.NSObject, Swift.Codable {
+    @objc final public let displayName: Swift.String
+    @objc final public let email: Swift.String
+    @objc final public let phoneNumber: Swift.String
+    @objc public init(displayName: Swift.String, email: Swift.String, phoneNumber: Swift.String)
+    convenience public init(supportContact: AirKeySmartDeviceCore.CompositeKey.Maintenance.SupportContact)
+    @objc deinit
+    public func encode(to encoder: any Swift.Encoder) throws
+    required public init(from decoder: any Swift.Decoder) throws
+  }
+  @objc deinit
+}
+@objcMembers @objc public class TariffObjC : ObjectiveC.NSObject, Swift.Codable {
+  @objc final public let includedKeys: Foundation.NSNumber
+  @objc final public let subscription: AirKeySmartDeviceCore.TariffObjC.SubscriptionObjC
+  @objc public init(includedKeys: Foundation.NSNumber, subscription: AirKeySmartDeviceCore.TariffObjC.SubscriptionObjC)
+  convenience public init(tariff: AirKeySmartDeviceCore.Tariff)
+  required convenience public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  @objcMembers @objc public class SubscriptionObjC : ObjectiveC.NSObject, Swift.Codable {
+    @objc final public let type: Swift.String
+    @objc final public let dateOfPayment: Swift.String
+    @objc final public let price: AirKeySmartDeviceCore.TariffObjC.PriceObjC
+    @objc final public let additionalKeyPrice: AirKeySmartDeviceCore.TariffObjC.PriceObjC
+    @objc final public let maxPaymentPeriodCount: Foundation.NSNumber
+    @objc public init(type: Swift.String, dateOfPayment: Swift.String, price: AirKeySmartDeviceCore.TariffObjC.PriceObjC, additionalKeyPrice: AirKeySmartDeviceCore.TariffObjC.PriceObjC, maxPaymentPeriodCount: Foundation.NSNumber)
+    convenience public init(subscription: AirKeySmartDeviceCore.Tariff.Subscription)
+    required convenience public init(from decoder: any Swift.Decoder) throws
+    public func encode(to encoder: any Swift.Encoder) throws
+    @objc deinit
+  }
+  @objcMembers @objc public class PriceObjC : ObjectiveC.NSObject, Swift.Codable {
+    @objc final public let value: Foundation.NSNumber
+    @objc final public let currency: Swift.String
+    @objc public init(value: Foundation.NSNumber, currency: Swift.String)
+    convenience public init(price: AirKeySmartDeviceCore.Tariff.Subscription.Price)
+    required convenience public init(from decoder: any Swift.Decoder) throws
+    public func encode(to encoder: any Swift.Encoder) throws
+    @objc deinit
+  }
+  @objc deinit
+}
+@objcMembers @objc public class PayloadObjC : ObjectiveC.NSObject, Swift.Codable {
+  @objc final public let type: Swift.String
+  @objc final public let value: Swift.String
+  @objc public init(type: Swift.String, value: Swift.String)
+  convenience public init(payload: AirKeySmartDeviceCore.Payload)
+  required convenience public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  @objc public class CarsPayloadObjC : ObjectiveC.NSObject, Swift.Codable {
+    @objc final public let cars: [AirKeySmartDeviceCore.PayloadObjC.CarsPayloadObjC.CarObjC]
+    @objcMembers @objc public class CarObjC : ObjectiveC.NSObject, Swift.Codable {
+      @objc final public let number: Swift.String
+      @objc final public let model: Swift.String
+      @objc public init(number: Swift.String, model: Swift.String)
+      convenience public init(car: AirKeySmartDeviceCore.Payload.CarsPayload.Car)
+      @objc deinit
+      public func encode(to encoder: any Swift.Encoder) throws
+      required public init(from decoder: any Swift.Decoder) throws
+    }
+    public init(cars: [AirKeySmartDeviceCore.PayloadObjC.CarsPayloadObjC.CarObjC])
+    convenience public init(carsPayload: AirKeySmartDeviceCore.Payload.CarsPayload)
+    @objc deinit
+    public func encode(to encoder: any Swift.Encoder) throws
+    required public init(from decoder: any Swift.Decoder) throws
+  }
+  @objc public func carsPayload() -> AirKeySmartDeviceCore.PayloadObjC.CarsPayloadObjC?
+  @objc deinit
+}
+@objcMembers @objc public class PayloadStorageObjC : ObjectiveC.NSObject, Swift.Codable {
+  @objc final public let payloads: [AirKeySmartDeviceCore.PayloadObjC]
+  @objc public init(payloads: [AirKeySmartDeviceCore.PayloadObjC])
+  convenience public init(storage: AirKeySmartDeviceCore.PayloadStorage)
+  required convenience public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  @objc deinit
+}
+@objcMembers @objc public class PeriodObjC : ObjectiveC.NSObject, Swift.Codable {
+  final public let period: AirKeySmartDeviceCore.Period
+  @objc final public let from: Foundation.NSDate
+  @objc final public let till: Foundation.NSDate
+  @objc public init(from: Foundation.NSDate, till: Foundation.NSDate)
+  public init(period: AirKeySmartDeviceCore.Period)
+  required convenience public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  @objc deinit
+}
+@objcMembers @objc public class SignatureKeyObjC : ObjectiveC.NSObject, Swift.Codable {
+  final public let signatureKey: AirKeySmartDeviceCore.CryptoKey.SignatureKey
+  @objc final public let algorithm: Foundation.NSNumber
+  @objc final public let salt: Swift.String
+  @objc final public let token: Swift.String
+  @objc public init(algorithm: Foundation.NSNumber, salt: Swift.String, token: Swift.String)
+  public init(signatureKey: AirKeySmartDeviceCore.CryptoKey.SignatureKey)
+  required convenience public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  @objc deinit
+}
+@objcMembers @objc public class UsageObjC : ObjectiveC.NSObject, Swift.Codable {
+  final public let usage: AirKeySmartDeviceCore.CryptoKey.Usage
+  @objc final public let restrictions: [AirKeySmartDeviceCore.UsageRestrictionObjC]
+  @objc public init(restrictions: [AirKeySmartDeviceCore.UsageRestrictionObjC])
+  public init(usage: AirKeySmartDeviceCore.CryptoKey.Usage)
+  required convenience public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  @objc deinit
+}
+@objcMembers @objc public class UsageRestrictionObjC : ObjectiveC.NSObject, Swift.Codable {
+  @objc final public let key: Swift.String
+  @objc final public let type: Swift.String
+  @objc final public let value: Swift.String
+  @objc public init(key: Swift.String, type: Swift.String, value: Swift.String)
+  convenience public init(restriction: AirKeySmartDeviceCore.CryptoKey.Usage.Restriction)
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+  required public init(from decoder: any Swift.Decoder) throws
+}
+@objc public enum KeyTypeObjC : Swift.Int, Swift.Codable {
+  case personal = 0
+  case family
+  case familyMember
+  case duplicate
+  case permanent
+  case temporary
+  case tempDuplicate
+  case link
+  case request
+  case securityApplication
+  case smartDoorOwner
+  case smartDoor
+  case smartCarOwner
+  case local
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objcMembers @objc public class SettingsObjC : ObjectiveC.NSObject, Swift.Codable {
+  public init(settings: AirKeySmartDeviceCore.CryptoKey.Settings)
+  @objc public var activeDistance: Swift.Int {
+    @objc get
+    @objc set
+  }
+  @objc public var autoClose: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc public var autoOpen: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc public var keepDoorOpened: Swift.Int {
+    @objc get
+    @objc set
+  }
+  @objc public var keepOpenedWhileStayingNear: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc public var notifyWhenClosed: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc public var useMethod1: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc public var useMethod2: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc public var notifyWhenOpened: Foundation.NSNumber? {
+    @objc get
+    @objc set
+  }
+  @objc public var openWhileTooCloseToLock: Foundation.NSNumber? {
+    @objc get
+    @objc set
+  }
+  @objc public var requirePincode: Foundation.NSNumber? {
+    @objc get
+    @objc set
+  }
+  @objc public var tooCloseToLockDistance: Foundation.NSNumber? {
+    @objc get
+    @objc set
+  }
+  @objc public var groundFloor: Foundation.NSNumber? {
+    @objc get
+    @objc set
+  }
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+  required public init(from decoder: any Swift.Decoder) throws
+}
+@_hasMissingDesignatedInitializers @objcMembers @objc public class SentObjC : ObjectiveC.NSObject, Swift.Codable {
+  @objc final public let created: Foundation.Date
+  @objc final public let title: Swift.String?
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+  required public init(from decoder: any Swift.Decoder) throws
+}
+@objc @objcMembers public class ConfigurationObjC : ObjectiveC.NSObject {
+  @objc final public let settingsList: [AirKeySmartDeviceCore.SettingObjC]
+  @objc public init(settingsList: [AirKeySmartDeviceCore.SettingObjC])
+  convenience public init(swiftConfig: AirKeySmartDeviceCore.Configuration)
+  public func toSwift() -> AirKeySmartDeviceCore.Configuration
+  @objc deinit
+}
+@objc @objcMembers public class SettingObjC : ObjectiveC.NSObject {
+  @objc final public let title: Swift.String
+  @objc final public let settingDescription: Swift.String
+  @objc final public let type: AirKeySmartDeviceCore.ObjCSettingType
+  @objc final public let readonly: Swift.Bool
+  @objc final public let invisible: Swift.Bool
+  @objc final public let settingId: Swift.Int32
+  @objc public init(title: Swift.String, settingDescription: Swift.String, type: AirKeySmartDeviceCore.ObjCSettingType, readonly: Swift.Bool, invisible: Swift.Bool, settingId: Swift.Int32)
+  convenience public init(setting: AirKeySmartDeviceCore.Configuration.Setting)
+  public func toSwift() -> AirKeySmartDeviceCore.Configuration.Setting
+  @objc deinit
+}
+@objc public enum SettingTypeKindObjC : Swift.Int {
+  case text
+  case float
+  case slider
+  case toggle
+  case exclusiveMultivalue
+  case inclusiveMultivalue
+  case currentDateTime
+  case group
+  case childPane
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc @objcMembers public class ObjCSettingType : ObjectiveC.NSObject {
+  @objc final public let kind: AirKeySmartDeviceCore.SettingTypeKindObjC
+  @objc final public let text: AirKeySmartDeviceCore.TextObjC?
+  @objc final public let floatValue: AirKeySmartDeviceCore.FloatObjC?
+  @objc final public let slider: AirKeySmartDeviceCore.SliderObjC?
+  @objc final public let toggle: AirKeySmartDeviceCore.ToggleObjC?
+  @objc final public let exclusive: AirKeySmartDeviceCore.ExclusiveMultivalueObjC?
+  @objc final public let inclusive: AirKeySmartDeviceCore.InclusiveMultivalueObjC?
+  @objc final public let dateTime: AirKeySmartDeviceCore.CurrentDateTimeObjC?
+  @objc final public let group: AirKeySmartDeviceCore.GroupObjC?
+  @objc final public let childPane: AirKeySmartDeviceCore.ObjCChildPane?
+  @objc public init(kind: AirKeySmartDeviceCore.SettingTypeKindObjC, text: AirKeySmartDeviceCore.TextObjC? = nil, floatValue: AirKeySmartDeviceCore.FloatObjC? = nil, slider: AirKeySmartDeviceCore.SliderObjC? = nil, toggle: AirKeySmartDeviceCore.ToggleObjC? = nil, exclusive: AirKeySmartDeviceCore.ExclusiveMultivalueObjC? = nil, inclusive: AirKeySmartDeviceCore.InclusiveMultivalueObjC? = nil, dateTime: AirKeySmartDeviceCore.CurrentDateTimeObjC? = nil, group: AirKeySmartDeviceCore.GroupObjC? = nil, childPane: AirKeySmartDeviceCore.ObjCChildPane? = nil)
+  convenience public init(type: AirKeySmartDeviceCore.Configuration.SettingType)
+  public func toSwift() -> AirKeySmartDeviceCore.Configuration.SettingType
+  @objc deinit
+}
+@objc @objcMembers public class TextObjC : ObjectiveC.NSObject {
+  @objc final public let currentValue: Swift.String?
+  @objc final public let hint: Swift.String?
+  @objc final public let regExpr: Swift.String?
+  @objc final public let minLength: Swift.Int32
+  @objc final public let maxLength: Swift.Int32
+  @objc public init(currentValue: Swift.String?, hint: Swift.String?, regExpr: Swift.String?, minLength: Swift.Int32, maxLength: Swift.Int32)
+  convenience public init(value: AirKeySmartDeviceCore.Configuration.SettingType.Text)
+  public func toSwift() -> AirKeySmartDeviceCore.Configuration.SettingType.Text
+  @objc deinit
+}
+@objc @objcMembers public class FloatObjC : ObjectiveC.NSObject {
+  @objc final public let currentValue: Swift.Float
+  @objc final public let min: Swift.Float
+  @objc final public let max: Swift.Float
+  @objc public init(currentValue: Swift.Float, min: Swift.Float, max: Swift.Float)
+  convenience public init(value: AirKeySmartDeviceCore.Configuration.SettingType.Float)
+  public func toSwift() -> AirKeySmartDeviceCore.Configuration.SettingType.Float
+  @objc deinit
+}
+@objc @objcMembers public class SliderObjC : ObjectiveC.NSObject {
+  @objc final public let currentValue: Swift.Int32
+  @objc final public let min: Swift.Int32
+  @objc final public let max: Swift.Int32
+  @objc public init(currentValue: Swift.Int32, min: Swift.Int32, max: Swift.Int32)
+  convenience public init(value: AirKeySmartDeviceCore.Configuration.SettingType.Slider)
+  public func toSwift() -> AirKeySmartDeviceCore.Configuration.SettingType.Slider
+  @objc deinit
+}
+@objc @objcMembers public class ToggleObjC : ObjectiveC.NSObject {
+  @objc final public let descriptions: [Swift.String]
+  @objc final public let currentValue: Swift.Bool
+  @objc public init(descriptions: [Swift.String], currentValue: Swift.Bool)
+  convenience public init(value: AirKeySmartDeviceCore.Configuration.SettingType.Toggle)
+  public func toSwift() -> AirKeySmartDeviceCore.Configuration.SettingType.Toggle
+  @objc deinit
+}
+@objc @objcMembers public class ExclusiveMultivalueObjC : ObjectiveC.NSObject {
+  @objc final public let values: [Swift.Int32]
+  @objc final public let descriptions: [Swift.String]
+  @objc final public let currentValue: Swift.Int32
+  @objc public init(values: [Swift.Int32], descriptions: [Swift.String], currentValue: Swift.Int32)
+  convenience public init(value: AirKeySmartDeviceCore.Configuration.SettingType.ExclusiveMultivalue)
+  public func toSwift() -> AirKeySmartDeviceCore.Configuration.SettingType.ExclusiveMultivalue
+  @objc deinit
+}
+@objc @objcMembers public class InclusiveMultivalueObjC : ObjectiveC.NSObject {
+  @objc final public let values: [Swift.Int32]
+  @objc final public let descriptions: [Swift.String]
+  @objc final public let currentValues: [Swift.Int32]
+  @objc public init(values: [Swift.Int32], descriptions: [Swift.String], currentValues: [Swift.Int32])
+  convenience public init(value: AirKeySmartDeviceCore.Configuration.SettingType.InclusiveMultivalue)
+  public func toSwift() -> AirKeySmartDeviceCore.Configuration.SettingType.InclusiveMultivalue
+  @objc deinit
+}
+@objc @objcMembers public class CurrentDateTimeObjC : ObjectiveC.NSObject {
+  @objc final public let timestamp: Swift.Int64
+  @objc public init(timestamp: Swift.Int64)
+  convenience public init(value: AirKeySmartDeviceCore.Configuration.SettingType.CurrentDateTime)
+  public func toSwift() -> AirKeySmartDeviceCore.Configuration.SettingType.CurrentDateTime
+  @objc deinit
+}
+@objc @objcMembers public class GroupObjC : ObjectiveC.NSObject {
+  @objc final public let settingsList: [AirKeySmartDeviceCore.SettingObjC]
+  @objc public init(settingsList: [AirKeySmartDeviceCore.SettingObjC])
+  convenience public init(value: AirKeySmartDeviceCore.Configuration.SettingType.Group)
+  public func toSwift() -> AirKeySmartDeviceCore.Configuration.SettingType.Group
+  @objc deinit
+}
+@objc @objcMembers public class ObjCChildPane : ObjectiveC.NSObject {
+  @objc final public let settingsList: [AirKeySmartDeviceCore.SettingObjC]
+  @objc public init(settingsList: [AirKeySmartDeviceCore.SettingObjC])
+  convenience public init(value: AirKeySmartDeviceCore.Configuration.SettingType.ChildPane)
+  public func toSwift() -> AirKeySmartDeviceCore.Configuration.SettingType.ChildPane
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers public class LockStatusObjC : ObjectiveC.NSObject {
+  @objc public var bluetooth: AirKeySmartDeviceCore.BluetoothObjC {
+    @objc get
+    @objc set
+  }
+  @objc public var internet: AirKeySmartDeviceCore.InternetObjC {
+    @objc get
+    @objc set
+  }
+  @objc public var phone: AirKeySmartDeviceCore.PhoneObjC {
+    @objc get
+    @objc set
+  }
+  @objc public var lastUpdate: Foundation.Date {
+    get
+  }
+  @objc override dynamic public init()
+  convenience public init(from swiftStatus: AirKeySmartDeviceCore.LockStatus)
+  public func toSwift() -> AirKeySmartDeviceCore.LockStatus
+  @objc deinit
+}
+@objc public enum BluetoothObjC : Swift.Int {
+  case undefined
+  case inactive
+  case channelDiscovered
+  case channelConnecting
+  case channelConnected
+  case discovered
+  case connecting
+  case connected
+  case opening
+  case opened
+  case closed
+  case unauthorized
+  case error
+  case smartDoor
+  public init(swiftValue: AirKeySmartDeviceCore.LockStatus.Bluetooth)
+  public func toSwift() -> AirKeySmartDeviceCore.LockStatus.Bluetooth
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum InternetObjC : Swift.Int {
+  case closed
+  case opening
+  case opened
+  case restricted
+  case offline
+  public init(swiftValue: AirKeySmartDeviceCore.LockStatus.Internet)
+  public func toSwift() -> AirKeySmartDeviceCore.LockStatus.Internet
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum PhoneObjC : Swift.Int {
+  case closed
+  public init(swiftValue: AirKeySmartDeviceCore.LockStatus.Phone)
+  public func toSwift() -> AirKeySmartDeviceCore.LockStatus.Phone
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public protocol AirKeyDeviceDelegateObjC : ObjectiveC.NSObjectProtocol {
+  @objc func lockStatusDidChanged(device name: Swift.String, status: AirKeySmartDeviceCore.LockStatusObjC)
+  @objc func didChange(configuration: AirKeySmartDeviceCore.ConfigurationObjC, for deviceName: Swift.String)
+  @objc func device(configuration: AirKeySmartDeviceCore.ConfigurationObjC)
+}
+public struct Schedule : Swift.Codable, Swift.Equatable, Swift.Hashable {
+  public static func == (a: AirKeySmartDeviceCore.Schedule, b: AirKeySmartDeviceCore.Schedule) -> Swift.Bool
+  public func encode(to encoder: any Swift.Encoder) throws
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension AirKeySmartDeviceCore.Configuration.Setting {
+  public func getSetting() -> DIDeviceInteractionLion.DIDeviceInteractionEntities__Configuration__Setting
+}
+public struct Tariff : Swift.Codable, Swift.Hashable {
+  public let includedKeys: Swift.Int
+  public let subscription: AirKeySmartDeviceCore.Tariff.Subscription
+  public static func == (a: AirKeySmartDeviceCore.Tariff, b: AirKeySmartDeviceCore.Tariff) -> Swift.Bool
+  public func encode(to encoder: any Swift.Encoder) throws
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension AirKeySmartDeviceCore.Tariff {
+  public struct Subscription : Swift.Codable, Swift.Hashable {
+    public let type: AirKeySmartDeviceCore.Tariff.Subscription.Kind
+    public let dateOfPayment: AirKeySmartDeviceCore.Tariff.Subscription.Payment
+    public let price: AirKeySmartDeviceCore.Tariff.Subscription.Price
+    public let additionalKeyPrice: AirKeySmartDeviceCore.Tariff.Subscription.Price
+    public let maxPaymentPeriodCount: Swift.Int
+    public enum Kind : Swift.String, Swift.Codable, Swift.Hashable {
+      case manual
+      case monthly
+      case yearly
+      case hourly
+      case daily
+      public init?(rawValue: Swift.String)
+      public typealias RawValue = Swift.String
+      public var rawValue: Swift.String {
+        get
+      }
+    }
+    public enum Payment : Swift.String, Swift.Codable, Swift.Hashable {
+      case firstDayOfMonth
+      case whenPeriodExpires
+      public init?(rawValue: Swift.String)
+      public typealias RawValue = Swift.String
+      public var rawValue: Swift.String {
+        get
+      }
+    }
+    public struct Price : Swift.Codable, Swift.Hashable {
+      public let value: Swift.Float
+      public let currency: Swift.String
+      public var stringValue: Swift.String {
+        get
+      }
+      public static func == (a: AirKeySmartDeviceCore.Tariff.Subscription.Price, b: AirKeySmartDeviceCore.Tariff.Subscription.Price) -> Swift.Bool
+      public func encode(to encoder: any Swift.Encoder) throws
+      public func hash(into hasher: inout Swift.Hasher)
+      public var hashValue: Swift.Int {
+        get
+      }
+      public init(from decoder: any Swift.Decoder) throws
+    }
+    public static func == (a: AirKeySmartDeviceCore.Tariff.Subscription, b: AirKeySmartDeviceCore.Tariff.Subscription) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+    public init(from decoder: any Swift.Decoder) throws
+  }
+}
+extension AirKeySmartDeviceCore.Tariff {
+  public struct Packet : Swift.Codable, Swift.Hashable {
+    public let includedKeys: Swift.Int
+    public let trialType: AirKeySmartDeviceCore.Tariff.Packet.TrialType
+    public let type: AirKeySmartDeviceCore.Tariff.Packet.Kind
+    public let subscriptions: [AirKeySmartDeviceCore.Tariff.Subscription]
+    public enum TrialType : Swift.String, Swift.Codable, Swift.Hashable {
+      case disabled
+      case tillTheEndOfNextMonth
+      case firstYear
+      case firstDay
+      case first10min
+      case first30min
+      case firstHour
+      case first2Sec
+      public init?(rawValue: Swift.String)
+      public typealias RawValue = Swift.String
+      public var rawValue: Swift.String {
+        get
+      }
+    }
+    public enum Kind : Swift.String, Swift.Codable, Swift.Hashable {
+      case access
+      case serviceCompany
+      public init?(rawValue: Swift.String)
+      public typealias RawValue = Swift.String
+      public var rawValue: Swift.String {
+        get
+      }
+    }
+    public static func == (a: AirKeySmartDeviceCore.Tariff.Packet, b: AirKeySmartDeviceCore.Tariff.Packet) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+    public init(from decoder: any Swift.Decoder) throws
+  }
+}
+public protocol Transportable : Swift.Decodable, Swift.Encodable {
+  var deviceName: Swift.String { get }
+}
+public enum Transport : Swift.Hashable {
+  case wiFiDirect(AirKeySmartDeviceCore.Transport.WiFiDirect)
+  case blueTooth(AirKeySmartDeviceCore.Transport.Bluetooth)
+  case blueToothLe(AirKeySmartDeviceCore.Transport.BluetoothLE)
+  case bluetoothRayonics(AirKeySmartDeviceCore.Transport.BluetoothRayonics)
+  case gsm(AirKeySmartDeviceCore.Transport.GSM)
+  case nfc(AirKeySmartDeviceCore.Transport.NFC)
+  case internet(AirKeySmartDeviceCore.Transport.Internet)
+  public enum Kind : Swift.String, Swift.CaseIterable, Swift.Codable {
+    case wiFiDirect
+    case blueTooth
+    case blueToothLe
+    case bluetoothRayonics
+    case gsm
+    case nfc
+    case internet
+    public init?(rawValue: Swift.String)
+    public typealias AllCases = [AirKeySmartDeviceCore.Transport.Kind]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [AirKeySmartDeviceCore.Transport.Kind] {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public struct WiFiDirect : AirKeySmartDeviceCore.Transportable, Swift.Codable, Swift.Hashable {
+    public var deviceName: Swift.String {
+      get
+    }
+    public let ssid: Swift.String
+    public let password: Swift.String
+    public let macAddress: Swift.String
+    public let host: Swift.String
+    public var type: AirKeySmartDeviceCore.Transport.Kind
+    public static func == (a: AirKeySmartDeviceCore.Transport.WiFiDirect, b: AirKeySmartDeviceCore.Transport.WiFiDirect) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public struct Bluetooth : AirKeySmartDeviceCore.Transportable, Swift.Codable, Swift.Hashable {
+    public let deviceName: Swift.String
+    public let macAddress: Swift.String
+    public let secureUuid: Swift.String
+    public let insecureUuid: Swift.String
+    public var type: AirKeySmartDeviceCore.Transport.Kind
+    public static func == (a: AirKeySmartDeviceCore.Transport.Bluetooth, b: AirKeySmartDeviceCore.Transport.Bluetooth) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public struct BluetoothLE : AirKeySmartDeviceCore.Transportable, Swift.Codable, Swift.Hashable {
+    public let deviceName: Swift.String
+    public let macAddress: Swift.String
+    public let serviceUuid: Swift.String
+    public let charDataUuid: Swift.String
+    public let charRssiUuid: Swift.String
+    public var type: AirKeySmartDeviceCore.Transport.Kind
+    public static func == (a: AirKeySmartDeviceCore.Transport.BluetoothLE, b: AirKeySmartDeviceCore.Transport.BluetoothLE) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public struct BluetoothRayonics : AirKeySmartDeviceCore.Transportable, Swift.Codable, Swift.Hashable, Swift.Equatable {
+    public let deviceName: Swift.String
+    public let registerCode: Swift.String
+    public let ivCode: Swift.String
+    public var type: AirKeySmartDeviceCore.Transport.Kind
+    public static func == (a: AirKeySmartDeviceCore.Transport.BluetoothRayonics, b: AirKeySmartDeviceCore.Transport.BluetoothRayonics) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public struct GSM : AirKeySmartDeviceCore.Transportable, Swift.Codable, Swift.Hashable {
+    public var deviceName: Swift.String {
+      get
+    }
+    public let phoneNumber: Swift.String
+    public var type: AirKeySmartDeviceCore.Transport.Kind
+    public static func == (a: AirKeySmartDeviceCore.Transport.GSM, b: AirKeySmartDeviceCore.Transport.GSM) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public struct NFC : AirKeySmartDeviceCore.Transportable, Swift.Codable, Swift.Hashable {
+    public var deviceName: Swift.String {
+      get
+    }
+    public var type: AirKeySmartDeviceCore.Transport.Kind
+    public static func == (a: AirKeySmartDeviceCore.Transport.NFC, b: AirKeySmartDeviceCore.Transport.NFC) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public struct Internet : AirKeySmartDeviceCore.Transportable, Swift.Codable, Swift.Hashable {
+    public var deviceName: Swift.String {
+      get
+    }
+    public let url: Foundation.URL
+    public let geoRestriction: Swift.Bool
+    public let radius: Swift.Int?
+    public let coordinate: AirKeySmartDeviceCore.Coordinate?
+    public var type: AirKeySmartDeviceCore.Transport.Kind
+    public let clientSecret: Swift.String?
+    public let clientToken: Swift.String?
+    public static func == (a: AirKeySmartDeviceCore.Transport.Internet, b: AirKeySmartDeviceCore.Transport.Internet) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public static func == (a: AirKeySmartDeviceCore.Transport, b: AirKeySmartDeviceCore.Transport) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension AirKeySmartDeviceCore.Transport : Swift.Codable {
+  public enum Base : Swift.String, Swift.CodingKey {
+    case type
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias RawValue = Swift.String
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public enum WiFiDirectKeys : Swift.String, Swift.CodingKey {
+    case ssid
+    case password
+    case macAddress
+    case host
+    case type
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias RawValue = Swift.String
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public enum BlueToothKeys : Swift.String, Swift.CodingKey {
+    case deviceName
+    case macAddress
+    case secureUuid
+    case insecureUuid
+    case type
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias RawValue = Swift.String
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public enum BlueToothLeKeys : Swift.String, Swift.CodingKey {
+    case deviceName
+    case macAddress
+    case serviceUuid
+    case charDataUuid
+    case charRssiUuid
+    case type
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias RawValue = Swift.String
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public enum BlueToothRayonicsKeys : Swift.String, Swift.CodingKey {
+    case deviceName
+    case registerCode
+    case ivCode
+    case type
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias RawValue = Swift.String
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public enum GSMKeys : Swift.String, Swift.CodingKey {
+    case phoneNumber
+    case type
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias RawValue = Swift.String
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public enum NFCKeys : Swift.String, Swift.CodingKey {
+    case type
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias RawValue = Swift.String
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public enum InternetKeys : Swift.String, Swift.CodingKey {
+    case url
+    case geoRestriction
+    case radius
+    case coordinate
+    case type
+    case clientSecret
+    case clientToken
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias RawValue = Swift.String
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+public struct CompositeKey : Swift.Codable, Swift.Identifiable, Swift.Hashable {
+  public let id: Swift.String
+  public let title: Swift.String
+  public let created: Foundation.Date
+  public let modified: Foundation.Date
+  public let keyIds: [Swift.String]
+  public let claims: [Swift.String]
+  public let maintenance: AirKeySmartDeviceCore.CompositeKey.Maintenance?
+  public let payload: AirKeySmartDeviceCore.PayloadStorage
+  public let period: AirKeySmartDeviceCore.Period
+  public let serviceCompanyId: Swift.String
+  public let share: [Swift.String]
+  public let type: AirKeySmartDeviceCore.CompositeKey.KeyType
+  public static func == (a: AirKeySmartDeviceCore.CompositeKey, b: AirKeySmartDeviceCore.CompositeKey) -> Swift.Bool
+  public typealias ID = Swift.String
+  public func encode(to encoder: any Swift.Encoder) throws
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension AirKeySmartDeviceCore.CompositeKey {
+  public struct Maintenance : Swift.Codable, Swift.Hashable {
+    public let id: Swift.String?
+    public let trial: Swift.Bool?
+    public let tariff: AirKeySmartDeviceCore.Tariff?
+    public let givenKeys: Swift.Int?
+    public let tariffPacket: AirKeySmartDeviceCore.Tariff.Packet?
+    public let companyContact: AirKeySmartDeviceCore.CompositeKey.Maintenance.CompanyContact
+    public let supportContact: AirKeySmartDeviceCore.CompositeKey.Maintenance.SupportContact
+    public let period: AirKeySmartDeviceCore.Period?
+    public struct CompanyContact : Swift.Codable, Swift.Hashable {
+      public static func == (a: AirKeySmartDeviceCore.CompositeKey.Maintenance.CompanyContact, b: AirKeySmartDeviceCore.CompositeKey.Maintenance.CompanyContact) -> Swift.Bool
+      public func encode(to encoder: any Swift.Encoder) throws
+      public func hash(into hasher: inout Swift.Hasher)
+      public var hashValue: Swift.Int {
+        get
+      }
+      public init(from decoder: any Swift.Decoder) throws
+    }
+    public struct SupportContact : Swift.Codable, Swift.Hashable {
+      public static func == (a: AirKeySmartDeviceCore.CompositeKey.Maintenance.SupportContact, b: AirKeySmartDeviceCore.CompositeKey.Maintenance.SupportContact) -> Swift.Bool
+      public func encode(to encoder: any Swift.Encoder) throws
+      public func hash(into hasher: inout Swift.Hasher)
+      public var hashValue: Swift.Int {
+        get
+      }
+      public init(from decoder: any Swift.Decoder) throws
+    }
+    public static func == (a: AirKeySmartDeviceCore.CompositeKey.Maintenance, b: AirKeySmartDeviceCore.CompositeKey.Maintenance) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public var pictureId: Swift.String? {
+    get
+  }
+  public enum ShareType : Swift.String, Swift.Codable, Swift.Hashable {
+    case permanent
+    case temporary
+    case duplicate
+    case tempDuplicate
+    case securityApplication
+    case onlineOpenApplication
+    case oneDay
+    case smartDoor
+    case smartDoorDuplicate
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public enum KeyType : Swift.String, Swift.Codable, Swift.Hashable {
+    case personal
+    case family
+    case familyMember
+    case duplicate
+    case permanent
+    case temporary
+    case tempDuplicate
+    case link
+    case request
+    case securityApplication
+    case smartDoorOwner
+    case smartDoor
+    case smartCarOwner
+    case local
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+}
+extension AirKeySmartDeviceCore.CompositeKey {
+  public struct Sent : Swift.Codable, Swift.Hashable {
+    public static func == (a: AirKeySmartDeviceCore.CompositeKey.Sent, b: AirKeySmartDeviceCore.CompositeKey.Sent) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+    public init(from decoder: any Swift.Decoder) throws
+  }
+}
+extension AirKeySmartDeviceCore.Configuration {
+  public func getConfiguration() -> DIDeviceInteractionLion.DIDeviceInteractionEntities__Configuration__Settings
+}
+public protocol Payloadable : Swift.Decodable {
+}
+public typealias PayloadStorage = [AirKeySmartDeviceCore.Payload]
+public struct Payload : Swift.Codable, Swift.Hashable {
+  public let type: Swift.String
+  public let value: Swift.String
+  public enum Kind : Swift.String {
+    case administrator
+    case address
+    case picture
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public struct Administrator : AirKeySmartDeviceCore.Payloadable {
+    public let isAdmin: Swift.Bool
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public struct Address : AirKeySmartDeviceCore.Payloadable {
+    public let room: Swift.String
+    public let addressId: Swift.String
+    public let address: Swift.String
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public struct Picture : AirKeySmartDeviceCore.Payloadable {
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public struct CarsPayload : Swift.Codable {
+    public let cars: [AirKeySmartDeviceCore.Payload.CarsPayload.Car]
+    public struct Car : Swift.Codable {
+      public func encode(to encoder: any Swift.Encoder) throws
+      public init(from decoder: any Swift.Decoder) throws
+    }
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public static func == (a: AirKeySmartDeviceCore.Payload, b: AirKeySmartDeviceCore.Payload) -> Swift.Bool
+  public func encode(to encoder: any Swift.Encoder) throws
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension Swift.Array where Element == AirKeySmartDeviceCore.Payload {
+  public func payload<T>(_ kind: AirKeySmartDeviceCore.Payload.Kind) -> T? where T : AirKeySmartDeviceCore.Payloadable
+  public var pictureId: Swift.String? {
+    get
+  }
+}
+public struct LockStatus : Swift.Equatable {
+  public var bluetooth: AirKeySmartDeviceCore.LockStatus.Bluetooth? {
+    get
+    set
+  }
+  public var internet: AirKeySmartDeviceCore.LockStatus.Internet? {
+    get
+    set
+  }
+  public var phone: AirKeySmartDeviceCore.LockStatus.Phone? {
+    get
+    set
+  }
+  public static func == (a: AirKeySmartDeviceCore.LockStatus, b: AirKeySmartDeviceCore.LockStatus) -> Swift.Bool
+}
+extension AirKeySmartDeviceCore.LockStatus {
+  public enum Bluetooth : Swift.Int, Swift.Equatable {
+    case undefined
+    case inactive
+    case channelDiscovered
+    case channelConnecting
+    case channelConnected
+    case discovered
+    case connecting
+    case connected
+    case opening
+    case opened
+    case closed
+    case unauthorized
+    case error
+    case smartDoor
+    public init(with name: Swift.String)
+    public var name: Swift.String {
+      get
+    }
+    public init?(rawValue: Swift.Int)
+    public typealias RawValue = Swift.Int
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+}
+extension AirKeySmartDeviceCore.LockStatus {
+  public enum Internet : Swift.Int, Swift.Hashable {
+    case closed
+    case opening
+    case opened
+    case restricted
+    case offline
+    public init(with update: AirKeySmartDeviceCore.LockStatus.Internet.Update)
+    public struct Update : Swift.Codable {
+      public let lockId: Swift.String
+      public let status: AirKeySmartDeviceCore.LockStatus.Internet.Update.Status?
+      public let connected: Swift.Bool?
+      public let lockOpen: Swift.Bool?
+      public let doorOpen: Swift.Bool?
+      public let lockVersion: Swift.String?
+      public let moduleVersion: Swift.String?
+      public let rxData: Swift.String?
+      public let rssi: Swift.Int?
+      public enum Status : Swift.String, Swift.Codable {
+        case online
+        case offline
+        case faulty
+        case notFound
+        case forbidden
+        public init?(rawValue: Swift.String)
+        public typealias RawValue = Swift.String
+        public var rawValue: Swift.String {
+          get
+        }
+      }
+      public enum CodingKeys : Swift.String, Swift.CodingKey {
+        case lockId
+        case status
+        case connected
+        case lockOpen
+        case doorOpen
+        case lockVersion
+        case moduleVersion
+        case rxData
+        case rssi
+        public init?(rawValue: Swift.String)
+        public init?(stringValue: Swift.String)
+        public init?(intValue: Swift.Int)
+        public typealias RawValue = Swift.String
+        public var intValue: Swift.Int? {
+          get
+        }
+        public var rawValue: Swift.String {
+          get
+        }
+        public var stringValue: Swift.String {
+          get
+        }
+      }
+      public func encode(to encoder: any Swift.Encoder) throws
+      public init(from decoder: any Swift.Decoder) throws
+    }
+    public struct Updates : Swift.Decodable {
+      public let lockList: [AirKeySmartDeviceCore.LockStatus.Internet.Update]
+      public enum CodingKeys : Swift.String, Swift.CodingKey {
+        case lockList
+        public init?(rawValue: Swift.String)
+        public init?(stringValue: Swift.String)
+        public init?(intValue: Swift.Int)
+        public typealias RawValue = Swift.String
+        public var intValue: Swift.Int? {
+          get
+        }
+        public var rawValue: Swift.String {
+          get
+        }
+        public var stringValue: Swift.String {
+          get
+        }
+      }
+      public init(from decoder: any Swift.Decoder) throws
+    }
+    public init?(rawValue: Swift.Int)
+    public typealias RawValue = Swift.Int
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+}
+extension AirKeySmartDeviceCore.LockStatus {
+  public enum Phone {
+    case closed
+    public static func == (a: AirKeySmartDeviceCore.LockStatus.Phone, b: AirKeySmartDeviceCore.LockStatus.Phone) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+public struct Configuration : Swift.Equatable {
+  public let settingsList: [AirKeySmartDeviceCore.Configuration.Setting]
+  public init(settingsList: [AirKeySmartDeviceCore.Configuration.Setting])
+  public static func == (a: AirKeySmartDeviceCore.Configuration, b: AirKeySmartDeviceCore.Configuration) -> Swift.Bool
+}
+extension AirKeySmartDeviceCore.Configuration {
+  public struct Setting : Swift.Equatable {
+    public let title: Swift.String
+    public let description: Swift.String
+    public let type: AirKeySmartDeviceCore.Configuration.SettingType
+    public let readonly: Swift.Bool
+    public let invisible: Swift.Bool
+    public let settingId: Swift.Int32
+    public init(title: Swift.String, description: Swift.String, type: AirKeySmartDeviceCore.Configuration.SettingType, readonly: Swift.Bool, invisible: Swift.Bool, settingId: Swift.Int32)
+    public static func == (a: AirKeySmartDeviceCore.Configuration.Setting, b: AirKeySmartDeviceCore.Configuration.Setting) -> Swift.Bool
+  }
+  public enum SettingType : Swift.Equatable {
+    case text(AirKeySmartDeviceCore.Configuration.SettingType.Text)
+    case float(AirKeySmartDeviceCore.Configuration.SettingType.Float)
+    case slider(AirKeySmartDeviceCore.Configuration.SettingType.Slider)
+    case toggle(AirKeySmartDeviceCore.Configuration.SettingType.Toggle)
+    case exclusiveMultivalue(AirKeySmartDeviceCore.Configuration.SettingType.ExclusiveMultivalue)
+    case inclusiveMultivalue(AirKeySmartDeviceCore.Configuration.SettingType.InclusiveMultivalue)
+    case currentDateTime(AirKeySmartDeviceCore.Configuration.SettingType.CurrentDateTime)
+    case group(AirKeySmartDeviceCore.Configuration.SettingType.Group)
+    case childPane(AirKeySmartDeviceCore.Configuration.SettingType.ChildPane)
+    public struct Text : Swift.Equatable {
+      public let currentValue: Swift.String?
+      public let hint: Swift.String?
+      public let regExpr: Swift.String?
+      public let minLength: Swift.Int32
+      public let maxLength: Swift.Int32
+      public init(currentValue: Swift.String?, hint: Swift.String?, regExpr: Swift.String?, minLength: Swift.Int32, maxLength: Swift.Int32)
+      public static func == (a: AirKeySmartDeviceCore.Configuration.SettingType.Text, b: AirKeySmartDeviceCore.Configuration.SettingType.Text) -> Swift.Bool
+    }
+    public struct Float : Swift.Equatable {
+      public let currentValue: Swift.Float
+      public let min: Swift.Float
+      public let max: Swift.Float
+      public init(currentValue: Swift.Float, min: Swift.Float, max: Swift.Float)
+      public static func == (a: AirKeySmartDeviceCore.Configuration.SettingType.Float, b: AirKeySmartDeviceCore.Configuration.SettingType.Float) -> Swift.Bool
+    }
+    public struct Slider : Swift.Equatable {
+      public let currentValue: Swift.Int32
+      public let min: Swift.Int32
+      public let max: Swift.Int32
+      public init(currentValue: Swift.Int32, min: Swift.Int32, max: Swift.Int32)
+      public static func == (a: AirKeySmartDeviceCore.Configuration.SettingType.Slider, b: AirKeySmartDeviceCore.Configuration.SettingType.Slider) -> Swift.Bool
+    }
+    public struct Toggle : Swift.Equatable {
+      public let descriptions: [Swift.String]
+      public let currentValue: Swift.Bool
+      public init(descriptions: [Swift.String], currentValue: Swift.Bool)
+      public static func == (a: AirKeySmartDeviceCore.Configuration.SettingType.Toggle, b: AirKeySmartDeviceCore.Configuration.SettingType.Toggle) -> Swift.Bool
+    }
+    public struct ExclusiveMultivalue : Swift.Equatable {
+      public let values: [Swift.Int32]
+      public let descriptions: [Swift.String]
+      public let currentValue: Swift.Int32
+      public init(values: [Swift.Int32], descriptions: [Swift.String], currentValue: Swift.Int32)
+      public static func == (a: AirKeySmartDeviceCore.Configuration.SettingType.ExclusiveMultivalue, b: AirKeySmartDeviceCore.Configuration.SettingType.ExclusiveMultivalue) -> Swift.Bool
+    }
+    public struct InclusiveMultivalue : Swift.Equatable {
+      public let values: [Swift.Int32]
+      public let descriptions: [Swift.String]
+      public let currentValues: [Swift.Int32]
+      public init(values: [Swift.Int32], descriptions: [Swift.String], currentValues: [Swift.Int32])
+      public static func == (a: AirKeySmartDeviceCore.Configuration.SettingType.InclusiveMultivalue, b: AirKeySmartDeviceCore.Configuration.SettingType.InclusiveMultivalue) -> Swift.Bool
+    }
+    public struct CurrentDateTime : Swift.Equatable {
+      public let timestamp: Swift.Int64
+      public init(timestamp: Swift.Int64)
+      public static func == (a: AirKeySmartDeviceCore.Configuration.SettingType.CurrentDateTime, b: AirKeySmartDeviceCore.Configuration.SettingType.CurrentDateTime) -> Swift.Bool
+    }
+    public struct Group : Swift.Equatable {
+      public let settingsList: [AirKeySmartDeviceCore.Configuration.Setting]
+      public init(settingsList: [AirKeySmartDeviceCore.Configuration.Setting])
+      public static func == (a: AirKeySmartDeviceCore.Configuration.SettingType.Group, b: AirKeySmartDeviceCore.Configuration.SettingType.Group) -> Swift.Bool
+    }
+    public struct ChildPane : Swift.Equatable {
+      public let settingsList: [AirKeySmartDeviceCore.Configuration.Setting]
+      public init(settingsList: [AirKeySmartDeviceCore.Configuration.Setting])
+      public static func == (a: AirKeySmartDeviceCore.Configuration.SettingType.ChildPane, b: AirKeySmartDeviceCore.Configuration.SettingType.ChildPane) -> Swift.Bool
+    }
+    public static func == (a: AirKeySmartDeviceCore.Configuration.SettingType, b: AirKeySmartDeviceCore.Configuration.SettingType) -> Swift.Bool
+  }
+}
+public struct LogFile {
+  public let name: Swift.String
+  public let type: Swift.String
+  public let data: Foundation.Data
+}
+public struct CryptoKey : Swift.Codable, Swift.Identifiable, Swift.Hashable {
+  public let id: Swift.String
+  public let title: Swift.String
+  public let created: Foundation.Date
+  public let modified: Foundation.Date
+  public let accessToken: Swift.String
+  public let accessTokenV3: Swift.String?
+  public let compositeKeyId: Swift.String
+  public let lock: AirKeySmartDeviceCore.CryptoKey.Lock
+  public let period: AirKeySmartDeviceCore.Period
+  public let schedule: AirKeySmartDeviceCore.Schedule?
+  public let settings: AirKeySmartDeviceCore.CryptoKey.Settings
+  public let signatureKey: AirKeySmartDeviceCore.CryptoKey.SignatureKey
+  public let signatureKeyV3: AirKeySmartDeviceCore.CryptoKey.SignatureKey?
+  public let usage: AirKeySmartDeviceCore.CryptoKey.Usage
+  public let serialNumber: Swift.String?
+  public static func == (a: AirKeySmartDeviceCore.CryptoKey, b: AirKeySmartDeviceCore.CryptoKey) -> Swift.Bool
+  public typealias ID = Swift.String
+  public func encode(to encoder: any Swift.Encoder) throws
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension AirKeySmartDeviceCore.CryptoKey {
+  public struct Lock : Swift.Hashable, Swift.Identifiable {
+    public let id: Swift.String
+    public let metadata: AirKeySmartDeviceCore.CryptoKey.Lock.Metadata
+    public let transports: [AirKeySmartDeviceCore.Transport]
+    public struct Metadata : Swift.Codable, Swift.Hashable {
+      public let hWExtension: Swift.String?
+      public let hWType: Swift.String?
+      public let hWVersion: Swift.String?
+      public let type: Swift.String
+      public let version: Swift.String
+      public static func == (a: AirKeySmartDeviceCore.CryptoKey.Lock.Metadata, b: AirKeySmartDeviceCore.CryptoKey.Lock.Metadata) -> Swift.Bool
+      public func encode(to encoder: any Swift.Encoder) throws
+      public func hash(into hasher: inout Swift.Hasher)
+      public var hashValue: Swift.Int {
+        get
+      }
+      public init(from decoder: any Swift.Decoder) throws
+    }
+    public func transport<T>(_ kind: AirKeySmartDeviceCore.Transport.Kind) -> T? where T : AirKeySmartDeviceCore.Transportable
+    public static func == (a: AirKeySmartDeviceCore.CryptoKey.Lock, b: AirKeySmartDeviceCore.CryptoKey.Lock) -> Swift.Bool
+    public typealias ID = Swift.String
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public struct Settings : Swift.Codable, Swift.Hashable {
+    public var activeDistance: Swift.Int
+    public var autoClose: Swift.Bool
+    public var autoOpen: Swift.Bool
+    public var keepDoorOpened: Swift.Int
+    public var keepOpenedWhileStayingNear: Swift.Bool
+    public var notifyWhenClosed: Swift.Bool
+    public var notifyWhenOpened: Swift.Bool?
+    public var openWhileTooCloseToLock: Swift.Bool?
+    public var requirePincode: Swift.Bool?
+    public var tooCloseToLockDistance: Swift.Int?
+    public var useMethod1: Swift.Bool
+    public var useMethod2: Swift.Bool
+    public var groundFloor: Swift.Int?
+    public static func == (a: AirKeySmartDeviceCore.CryptoKey.Settings, b: AirKeySmartDeviceCore.CryptoKey.Settings) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public struct SignatureKey : Swift.Codable, Swift.Hashable {
+    public let algorithm: AirKeySmartDeviceCore.CryptoKey.SignatureKey.Algorithm
+    public let salt: Swift.String
+    public let token: Swift.String
+    public enum Algorithm : Swift.String, Swift.Codable {
+      case none
+      case hmacSha1
+      case hmacSha256
+      public var value: Swift.Double {
+        get
+      }
+      public init?(rawValue: Swift.String)
+      public typealias RawValue = Swift.String
+      public var rawValue: Swift.String {
+        get
+      }
+    }
+    public static func == (a: AirKeySmartDeviceCore.CryptoKey.SignatureKey, b: AirKeySmartDeviceCore.CryptoKey.SignatureKey) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public struct Usage : Swift.Codable, Swift.Hashable {
+    public let restrictions: [AirKeySmartDeviceCore.CryptoKey.Usage.Restriction]
+    public struct Restriction : Swift.Codable, Swift.Hashable {
+      public let key: Swift.String
+      public let type: Swift.String
+      public let value: Swift.String
+      public static func == (a: AirKeySmartDeviceCore.CryptoKey.Usage.Restriction, b: AirKeySmartDeviceCore.CryptoKey.Usage.Restriction) -> Swift.Bool
+      public func encode(to encoder: any Swift.Encoder) throws
+      public func hash(into hasher: inout Swift.Hasher)
+      public var hashValue: Swift.Int {
+        get
+      }
+      public init(from decoder: any Swift.Decoder) throws
+    }
+    public static func == (a: AirKeySmartDeviceCore.CryptoKey.Usage, b: AirKeySmartDeviceCore.CryptoKey.Usage) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+    public init(from decoder: any Swift.Decoder) throws
+  }
+}
+extension AirKeySmartDeviceCore.CryptoKey.Usage {
+  public enum Kind : Swift.String {
+    case maxOpenedTime
+    case minOpenedTime
+    case minActiveDistance
+    case autoOpenEnabled
+    case keepOpenedEnabled
+    case maxActiveDistance
+    case minGroundFloor
+    case maxGroundFloor
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public var maxOpenedTime: Swift.Int {
+    get
+  }
+  public var minOpenedTime: Swift.Int {
+    get
+  }
+  public var minActiveDistance: Swift.Int {
+    get
+  }
+  public var maxActiveDistance: Swift.Int {
+    get
+  }
+  public var autoOpenEnabled: Swift.Bool {
+    get
+  }
+  public var keepOpenedEnabled: Swift.Bool {
+    get
+  }
+  public var minGroundFloor: Swift.Int? {
+    get
+  }
+  public var maxGroundFloor: Swift.Int? {
+    get
+  }
+}
+extension AirKeySmartDeviceCore.CryptoKey {
+  public enum Status {
+    case active
+    case expired
+    public static func == (a: AirKeySmartDeviceCore.CryptoKey.Status, b: AirKeySmartDeviceCore.CryptoKey.Status) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public var status: AirKeySmartDeviceCore.CryptoKey.Status {
+    get
+  }
+  public struct Update {
+    public let keyId: Swift.String
+    public let title: Swift.String
+    public let settings: AirKeySmartDeviceCore.CryptoKey.Settings
+  }
+}
+extension AirKeySmartDeviceCore.CryptoKey.Lock : Swift.Codable {
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case id
+    case metadata
+    case transports
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias RawValue = Swift.String
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+public protocol AirKeySmartDeviceCoreProtocol {
+  func add(compositeKeys: [AirKeySmartDeviceCore.CompositeKey], crypto: [AirKeySmartDeviceCore.CryptoKey], sent: [AirKeySmartDeviceCore.CompositeKey.Sent])
+  func removeAllKeys()
+  func removeKey(by compositeKeyId: Swift.String)
+  func openLock(for name: Swift.String, key: AirKeySmartDeviceCore.CryptoKey)
+  func closeLock(with name: Swift.String, key: AirKeySmartDeviceCore.CryptoKey)
+  func updateLock(keyId: Swift.String, settings: AirKeySmartDeviceCore.CryptoKey.Settings)
+  func getLockConfiguration(for deviceName: Swift.String)
+  func update(configuration: AirKeySmartDeviceCore.Configuration, for deviceName: Swift.String)
+  func set(delegate: any AirKeySmartDeviceCore.AirKeyDeviceDelegate)
+  func launch(options: [UIKit.UIApplication.LaunchOptionsKey : Any]?)
+  func getLogFileArchiveUrl() -> Foundation.URL?
+}
+public struct Coordinate : Swift.Codable, Swift.Hashable {
+  public static func == (a: AirKeySmartDeviceCore.Coordinate, b: AirKeySmartDeviceCore.Coordinate) -> Swift.Bool
+  public func encode(to encoder: any Swift.Encoder) throws
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension Foundation.Data {
+  public func sha256String() -> Swift.String
+}
+extension Swift.String {
+  public func sha256() -> Swift.String
+  public func encryptWithAesEcb(key: Swift.String) -> Foundation.Data?
+}
+public protocol AirKeyDeviceDelegate {
+  func lockStatusDidChanged(device name: Swift.String, status: AirKeySmartDeviceCore.LockStatus)
+  func didChange(configuration: AirKeySmartDeviceCore.Configuration, for deviceName: Swift.String)
+  func device(configuration: AirKeySmartDeviceCore.Configuration)
+}
+extension AirKeySmartDeviceCore.ConnectionType : Swift.Equatable {}
+extension AirKeySmartDeviceCore.ConnectionType : Swift.Hashable {}
+extension AirKeySmartDeviceCore.KeyTypeObjC : Swift.Equatable {}
+extension AirKeySmartDeviceCore.KeyTypeObjC : Swift.Hashable {}
+extension AirKeySmartDeviceCore.KeyTypeObjC : Swift.RawRepresentable {}
+extension AirKeySmartDeviceCore.SettingTypeKindObjC : Swift.Equatable {}
+extension AirKeySmartDeviceCore.SettingTypeKindObjC : Swift.Hashable {}
+extension AirKeySmartDeviceCore.SettingTypeKindObjC : Swift.RawRepresentable {}
+extension AirKeySmartDeviceCore.BluetoothObjC : Swift.Equatable {}
+extension AirKeySmartDeviceCore.BluetoothObjC : Swift.Hashable {}
+extension AirKeySmartDeviceCore.BluetoothObjC : Swift.RawRepresentable {}
+extension AirKeySmartDeviceCore.InternetObjC : Swift.Equatable {}
+extension AirKeySmartDeviceCore.InternetObjC : Swift.Hashable {}
+extension AirKeySmartDeviceCore.InternetObjC : Swift.RawRepresentable {}
+extension AirKeySmartDeviceCore.PhoneObjC : Swift.Equatable {}
+extension AirKeySmartDeviceCore.PhoneObjC : Swift.Hashable {}
+extension AirKeySmartDeviceCore.PhoneObjC : Swift.RawRepresentable {}
+extension AirKeySmartDeviceCore.LockStatus.Bluetooth : Swift.Hashable {}
+extension AirKeySmartDeviceCore.LockStatus.Bluetooth : Swift.RawRepresentable {}
+extension AirKeySmartDeviceCore.LockStatus.Internet : Swift.RawRepresentable {}
+extension AirKeySmartDeviceCore.LockStatus.Phone : Swift.Equatable {}
+extension AirKeySmartDeviceCore.LockStatus.Phone : Swift.Hashable {}
+extension AirKeySmartDeviceCore.Tariff.Subscription.Kind : Swift.RawRepresentable {}
+extension AirKeySmartDeviceCore.Tariff.Subscription.Payment : Swift.RawRepresentable {}
+extension AirKeySmartDeviceCore.Tariff.Packet.TrialType : Swift.RawRepresentable {}
+extension AirKeySmartDeviceCore.Tariff.Packet.Kind : Swift.RawRepresentable {}
+extension AirKeySmartDeviceCore.Transport.Kind : Swift.Equatable {}
+extension AirKeySmartDeviceCore.Transport.Kind : Swift.Hashable {}
+extension AirKeySmartDeviceCore.Transport.Kind : Swift.RawRepresentable {}
+extension AirKeySmartDeviceCore.Transport.Base : Swift.Equatable {}
+extension AirKeySmartDeviceCore.Transport.Base : Swift.Hashable {}
+extension AirKeySmartDeviceCore.Transport.Base : Swift.RawRepresentable {}
+extension AirKeySmartDeviceCore.Transport.WiFiDirectKeys : Swift.Equatable {}
+extension AirKeySmartDeviceCore.Transport.WiFiDirectKeys : Swift.Hashable {}
+extension AirKeySmartDeviceCore.Transport.WiFiDirectKeys : Swift.RawRepresentable {}
+extension AirKeySmartDeviceCore.Transport.BlueToothKeys : Swift.Equatable {}
+extension AirKeySmartDeviceCore.Transport.BlueToothKeys : Swift.Hashable {}
+extension AirKeySmartDeviceCore.Transport.BlueToothKeys : Swift.RawRepresentable {}
+extension AirKeySmartDeviceCore.Transport.BlueToothLeKeys : Swift.Equatable {}
+extension AirKeySmartDeviceCore.Transport.BlueToothLeKeys : Swift.Hashable {}
+extension AirKeySmartDeviceCore.Transport.BlueToothLeKeys : Swift.RawRepresentable {}
+extension AirKeySmartDeviceCore.Transport.BlueToothRayonicsKeys : Swift.Equatable {}
+extension AirKeySmartDeviceCore.Transport.BlueToothRayonicsKeys : Swift.Hashable {}
+extension AirKeySmartDeviceCore.Transport.BlueToothRayonicsKeys : Swift.RawRepresentable {}
+extension AirKeySmartDeviceCore.Transport.GSMKeys : Swift.Equatable {}
+extension AirKeySmartDeviceCore.Transport.GSMKeys : Swift.Hashable {}
+extension AirKeySmartDeviceCore.Transport.GSMKeys : Swift.RawRepresentable {}
+extension AirKeySmartDeviceCore.Transport.NFCKeys : Swift.Equatable {}
+extension AirKeySmartDeviceCore.Transport.NFCKeys : Swift.Hashable {}
+extension AirKeySmartDeviceCore.Transport.NFCKeys : Swift.RawRepresentable {}
+extension AirKeySmartDeviceCore.Transport.InternetKeys : Swift.Equatable {}
+extension AirKeySmartDeviceCore.Transport.InternetKeys : Swift.Hashable {}
+extension AirKeySmartDeviceCore.Transport.InternetKeys : Swift.RawRepresentable {}
+extension AirKeySmartDeviceCore.CompositeKey.ShareType : Swift.RawRepresentable {}
+extension AirKeySmartDeviceCore.CompositeKey.KeyType : Swift.RawRepresentable {}
+extension AirKeySmartDeviceCore.Payload.Kind : Swift.Equatable {}
+extension AirKeySmartDeviceCore.Payload.Kind : Swift.Hashable {}
+extension AirKeySmartDeviceCore.Payload.Kind : Swift.RawRepresentable {}
+extension AirKeySmartDeviceCore.LockStatus.Internet.Update.Status : Swift.Equatable {}
+extension AirKeySmartDeviceCore.LockStatus.Internet.Update.Status : Swift.Hashable {}
+extension AirKeySmartDeviceCore.LockStatus.Internet.Update.Status : Swift.RawRepresentable {}
+extension AirKeySmartDeviceCore.LockStatus.Internet.Update.CodingKeys : Swift.Equatable {}
+extension AirKeySmartDeviceCore.LockStatus.Internet.Update.CodingKeys : Swift.Hashable {}
+extension AirKeySmartDeviceCore.LockStatus.Internet.Update.CodingKeys : Swift.RawRepresentable {}
+extension AirKeySmartDeviceCore.LockStatus.Internet.Updates.CodingKeys : Swift.Equatable {}
+extension AirKeySmartDeviceCore.LockStatus.Internet.Updates.CodingKeys : Swift.Hashable {}
+extension AirKeySmartDeviceCore.LockStatus.Internet.Updates.CodingKeys : Swift.RawRepresentable {}
+extension AirKeySmartDeviceCore.CryptoKey.SignatureKey.Algorithm : Swift.Equatable {}
+extension AirKeySmartDeviceCore.CryptoKey.SignatureKey.Algorithm : Swift.Hashable {}
+extension AirKeySmartDeviceCore.CryptoKey.SignatureKey.Algorithm : Swift.RawRepresentable {}
+extension AirKeySmartDeviceCore.CryptoKey.Usage.Kind : Swift.Equatable {}
+extension AirKeySmartDeviceCore.CryptoKey.Usage.Kind : Swift.Hashable {}
+extension AirKeySmartDeviceCore.CryptoKey.Usage.Kind : Swift.RawRepresentable {}
+extension AirKeySmartDeviceCore.CryptoKey.Status : Swift.Equatable {}
+extension AirKeySmartDeviceCore.CryptoKey.Status : Swift.Hashable {}
+extension AirKeySmartDeviceCore.CryptoKey.Lock.CodingKeys : Swift.Equatable {}
+extension AirKeySmartDeviceCore.CryptoKey.Lock.CodingKeys : Swift.Hashable {}
+extension AirKeySmartDeviceCore.CryptoKey.Lock.CodingKeys : Swift.RawRepresentable {}

@@ -1,0 +1,23 @@
+//framework module DIDeviceInteractionLion {	
+//	umbrella header "DIDeviceInteractionLion.h"
+//	export *
+//	module * { export * }
+//}
+
+framework module DIDeviceInteractionLion {
+	module Core {
+        umbrella header "DIDeviceInteractionLion.h"
+   		export *
+   		//module * { export * }
+    }
+	explicit module SecurityKit {
+		header "AIKSecurityToolbox.h"
+		export *
+		//module * { export * }
+	}
+	explicit module Random {
+		//header "DIDeviceInteractionRandomString.h"
+		header "DIDeviceInteractionLion_Random.h"
+		export *
+	}
+}

@@ -1,0 +1,21 @@
+//framework module DIDeviceInteractionLion {	
+//    module Core {
+//        umbrella header "DIDeviceInteractionLion.h"
+//        //export *
+//    }
+//	//umbrella header "DIDeviceInteractionLion.h"
+//	//export *
+//	//module * { export * }
+//	explicit module SecurityKit {
+//		header "AIKSecurityToolbox.h"
+//		//export *
+//	}
+//}
+
+explicit module DIDeviceInteractionLion.Private {
+	header "DIDeviceInteractionLion_Private.h"
+	export *
+	header "DIDeviceInteractionProcessorBase+PrivateAccessors.h"
+	header "DIDeviceInteractionAmaterasuSessionConfiguration.h"
+	header "DIDeviceInteractionAmaterasuEnvelopeSerializerProtocol.h"
+}

@@ -1,0 +1,87 @@
+name: SmartAirKey iOS
+
+# Builds and unit-tests the SmartAirKey iOS app on a macOS runner.
+# Scoped to the app folder so it never runs on unrelated web/monorepo changes.
+
+on:
+  push:
+    paths:
+      - 'smartairkey-ios/**'
+      - '.github/workflows/ios-smartairkey.yml'
+  pull_request:
+    paths:
+      - 'smartairkey-ios/**'
+      - '.github/workflows/ios-smartairkey.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: ios-smartairkey-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-test:
+    name: Build & Test
+    runs-on: macos-14
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: smartairkey-ios
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Install XcodeGen & xcbeautify
+        run: brew install xcodegen xcbeautify
+
+      - name: Generate Xcode project
+        run: xcodegen generate
+
+      - name: Cache CocoaPods
+        uses: actions/cache@v4
+        with:
+          path: smartairkey-ios/Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('smartairkey-ios/Podfile') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
+
+      - name: Install pods
+        run: pod install
+
+      - name: Pick an iOS simulator
+        id: sim
+        run: |
+          # Choose any available iPhone simulator for the installed Xcode,
+          # so we don't depend on a specific model/OS combination.
+          UDID=$(xcrun simctl list devices available --json | python3 -c "import json,sys; d=json.load(sys.stdin)['devices']; print(next(x['udid'] for r in sorted(d) for x in d[r] if 'iPhone' in x['name']))")
+          echo "Using simulator $UDID"
+          echo "udid=$UDID" >> "$GITHUB_OUTPUT"
+
+      - name: Build & test
+        run: |
+          set -o pipefail
+          xcodebuild test \
+            -workspace SmartAirKey.xcworkspace \
+            -scheme SmartAirKey \
+            -destination "id=${{ steps.sim.outputs.udid }}" \
+            -resultBundlePath TestResults.xcresult \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO \
+            2>&1 | tee xcodebuild-test.log | xcbeautify
+
+      - name: Diagnostics on failure
+        if: failure()
+        run: |
+          echo "===== raw xcodebuild tail ====="
+          tail -150 xcodebuild-test.log || true
+          echo "===== recent crash reports ====="
+          DIR="$HOME/Library/Logs/DiagnosticReports"
+          ls -1t "$DIR" 2>/dev/null | head -20 || true
+          for f in $(ls -1t "$DIR"/*.ips 2>/dev/null | head -5); do
+            echo "--- $f ---"
+            head -80 "$f" || true
+          done

@@ -1,0 +1,11 @@
+framework module AirKeySmartDeviceCore {
+  umbrella header "AirKeySmartDeviceCore.h"
+  export *
+
+  module * { export * }
+}
+
+module AirKeySmartDeviceCore.Swift {
+  header "AirKeySmartDeviceCore-Swift.h"
+  requires objc
+}

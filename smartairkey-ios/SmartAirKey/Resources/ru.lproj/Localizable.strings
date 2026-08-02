@@ -1,0 +1,69 @@
+/* SmartAirKey — Russian (primary). No technical terms (BLE, SDK, RSSI, controller, key) are exposed. */
+
+// Common
+"app.name" = "SmartAirKey";
+"common.retry" = "Повторить";
+"common.cancel" = "Отмена";
+"common.ok" = "Понятно";
+"common.open_settings" = "Открыть настройки";
+"common.contact_support" = "Связаться с поддержкой";
+"common.done" = "Готово";
+
+// Auth
+"auth.title" = "Вход";
+"auth.subtitle" = "Войдите, чтобы получить доступ к своим дверям.";
+"auth.email" = "Электронная почта";
+"auth.password" = "Пароль";
+"auth.sign_in" = "Войти";
+"auth.signing_in" = "Входим…";
+"auth.error.invalid" = "Не удалось войти. Проверьте почту и пароль.";
+"auth.sign_out" = "Выйти из аккаунта";
+"auth.sign_out.confirm.title" = "Выйти из аккаунта?";
+"auth.sign_out.confirm.message" = "Двери и доступы будут удалены с этого устройства.";
+
+// Home — seamless access
+"home.title" = "Доступ";
+"seamless.title" = "Бесшовный доступ";
+"seamless.subtitle.on" = "Двери открываются сами, когда вы подходите.";
+"seamless.subtitle.off" = "Открывайте двери вручную кнопкой «Открыть».";
+"seamless.state.on" = "Включено";
+"seamless.state.off" = "Выключено";
+"seamless.state.turning_on" = "Включаем…";
+"seamless.state.turning_off" = "Выключаем…";
+"seamless.accessibility.hint" = "Дважды коснитесь, чтобы включить или выключить автоматическое открытие дверей рядом с вами.";
+
+// Doors
+"doors.section" = "Мои двери";
+"doors.empty.title" = "Пока нет доступных дверей";
+"doors.empty.message" = "Когда вам выдадут доступ, двери появятся здесь.";
+"door.open" = "Открыть";
+"door.opening" = "Открываем…";
+"door.opened" = "Открыто";
+
+// Door statuses (user-facing, plain language)
+"door.status.ready" = "Готова к открытию";
+"door.status.connecting" = "Подключаемся…";
+"door.status.opening" = "Открывается…";
+"door.status.opened" = "Дверь открыта";
+"door.status.unavailable" = "Недоступна — подойдите ближе";
+"door.status.no_access" = "Нет доступа";
+"door.status.expired" = "Доступ истёк";
+
+// Success
+"open.success" = "Дверь открыта";
+
+// Errors (each has one primary action)
+"error.bluetooth_off.title" = "Включите Bluetooth";
+"error.bluetooth_off.message" = "Чтобы открывать двери рядом, включите Bluetooth.";
+"error.bluetooth_denied.title" = "Нужен доступ к Bluetooth";
+"error.bluetooth_denied.message" = "Разрешите приложению использовать Bluetooth в настройках, чтобы открывать двери.";
+"error.bluetooth_unsupported.title" = "Bluetooth недоступен";
+"error.bluetooth_unsupported.message" = "На этом устройстве не получится открывать двери рядом.";
+"error.open_failed.title" = "Не удалось открыть";
+"error.open_failed.message" = "Дверь не ответила. Подойдите ближе и попробуйте ещё раз.";
+"error.no_access.title" = "Нет доступа к двери";
+"error.no_access.message" = "Ваш доступ к этой двери недействителен. Обратитесь в поддержку.";
+"error.keys_failed.title" = "Не удалось обновить доступы";
+"error.keys_failed.message" = "Проверьте подключение к интернету и попробуйте снова.";
+"error.generic.title" = "Что-то пошло не так";
+"error.generic.message" = "Попробуйте ещё раз. Если не помогает — свяжитесь с поддержкой.";

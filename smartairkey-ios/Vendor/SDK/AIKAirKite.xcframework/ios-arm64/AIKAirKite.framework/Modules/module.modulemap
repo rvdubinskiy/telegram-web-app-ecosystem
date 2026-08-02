@@ -1,0 +1,5 @@
+framework module AIKAirKite {
+	umbrella header "AIKAirKite.h"
+	export * // export each module
+	module * { export * } // for each module export each submodule
+}

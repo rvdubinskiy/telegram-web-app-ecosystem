@@ -1,0 +1,29 @@
+# Xcode / build
+build/
+DerivedData/
+*.xcodeproj
+*.xcworkspace
+!default.xcworkspace
+xcuserdata/
+*.xcuserstate
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# CocoaPods (installed locally; not vendored)
+Pods/
+Podfile.lock
+
+# SwiftPM
+.swiftpm/
+.build/
+
+# The SmartAirKey binary SDK (Vendor/SDK) IS committed so the project builds
+# out of the box. Ignore anything else that lands under Vendor/.
+Vendor/*
+!Vendor/SDK/
+
+# macOS
+.DS_Store

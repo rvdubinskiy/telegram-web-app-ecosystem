@@ -1,0 +1,79 @@
+# XcodeGen project spec.
+#
+# Generate the Xcode project with:
+#   xcodegen generate
+#   pod install            # links the SmartAirKey SDK's transitive pod dependencies
+#   open SmartAirKey.xcworkspace
+#
+# The SmartAirKey binary xcframeworks are committed under Vendor/SDK/, so the
+# project builds without any extra download.
+
+name: SmartAirKey
+options:
+  bundleIdPrefix: com.smartairkey
+  deploymentTarget:
+    iOS: "16.0"
+  developmentLanguage: ru
+  groupSortPosition: top
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    MARKETING_VERSION: "1.0.0"
+    CURRENT_PROJECT_VERSION: "1"
+    DEVELOPMENT_TEAM: "" # set your team id
+    CODE_SIGN_STYLE: Automatic
+    ENABLE_BITCODE: NO
+    TARGETED_DEVICE_FAMILY: "1" # iPhone
+
+targets:
+  SmartAirKey:
+    type: application
+    platform: iOS
+    sources:
+      - path: SmartAirKey
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.smartairkey.seamless
+        INFOPLIST_FILE: SmartAirKey/Resources/Info.plist
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        # Vendored SmartAirKey SDK (committed under Vendor/SDK)
+        FRAMEWORK_SEARCH_PATHS:
+          - $(inherited)
+          - $(PROJECT_DIR)/Vendor/SDK
+    dependencies:
+      # SmartAirKey binary SDK (vendored xcframeworks).
+      - framework: Vendor/SDK/AirKeySmartDeviceCore.xcframework
+        embed: true
+      - framework: Vendor/SDK/AIKAirKite.xcframework
+        embed: true
+      - framework: Vendor/SDK/BWBluetoothWolf.xcframework
+        embed: true
+      - framework: Vendor/SDK/DIDeviceInteractionLion.xcframework
+        embed: true
+      - framework: Vendor/SDK/TCTransportCamel.xcframework
+        embed: true
+
+  SmartAirKeyTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: SmartAirKeyTests
+    dependencies:
+      - target: SmartAirKey
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.smartairkey.seamless.tests
+
+schemes:
+  SmartAirKey:
+    build:
+      targets:
+        SmartAirKey: all
+        SmartAirKeyTests: [test]
+    run:
+      config: Debug
+    test:
+      targets:
+        - SmartAirKeyTests

@@ -28,12 +28,21 @@ final class AccessErrorTests: XCTestCase {
     }
 
     func testCopyHasNoTechnicalJargon() {
-        let banned = ["BLE", "RSSI", "SDK", "CryptoKey", "controller", "контроллер", "Bluetooth Low Energy"]
+        // Acronyms/nouns matched as whole words (so "BLE" doesn't match the
+        // everyday word "unavailable"). "Bluetooth" alone is allowed (req. 4).
+        let bannedWords = ["BLE", "RSSI", "SDK", "CryptoKey", "controller", "контроллер"]
+        let bannedPhrases = ["Bluetooth Low Energy"]
+
         for error in all {
-            let text = (error.title + " " + error.message)
-            for term in banned {
-                XCTAssertFalse(text.localizedCaseInsensitiveContains(term),
+            let text = error.title + " " + error.message
+            let words = Set(text.lowercased().split { !$0.isLetter && !$0.isNumber }.map(String.init))
+            for term in bannedWords {
+                XCTAssertFalse(words.contains(term.lowercased()),
                                "\(error.id) copy contains banned term \(term)")
+            }
+            for phrase in bannedPhrases {
+                XCTAssertFalse(text.localizedCaseInsensitiveContains(phrase),
+                               "\(error.id) copy contains banned phrase \(phrase)")
             }
         }
     }
